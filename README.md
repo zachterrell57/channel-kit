@@ -1,5 +1,7 @@
 # ChannelKit
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ChannelKit is an open-source Next.js application built with [Frog.js](https://frog.fm), providing a customizable Farcaster Frame for managing channel memberships. Designed for developers, it offers a flexible foundation for creating and managing membership requests to Farcaster channels.
 
 ## Prerequisites
