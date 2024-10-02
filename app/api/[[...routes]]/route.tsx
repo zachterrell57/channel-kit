@@ -1,34 +1,30 @@
 /** @jsxImportSource frog/jsx */
-import { Button, Frog } from "frog";
-import { neynar } from "frog/hubs";
-import { handle } from "frog/next";
-import { devtools } from "frog/dev";
-import { serveStatic } from "frog/serve-static";
-import { NEYNAR_API_KEY } from "@/env";
-import { verifyUser } from "@/verifications";
-import { getChannelDetails, sendChannelInvite } from "@/data/farcaster";
+import { NEYNAR_API_KEY } from "@/env"
+import { Heading, Icon, vars } from "@/ui"
+import { verifyUser } from "@/verifications"
+import { Button, Frog } from "frog"
+import { devtools } from "frog/dev"
+import { neynar } from "frog/hubs"
+import { handle } from "frog/next"
+import { serveStatic } from "frog/serve-static"
 
+import { getChannelDetails, sendChannelInvite } from "@/data/farcaster"
 import {
-  isInvitedToChannel,
-  isMemberOfChannel,
-} from "@/verifications/farcaster";
-
-import {
-  icon,
+  channelInfo,
   container,
-  verticalStack,
+  icon,
   messageBox,
   messageText,
-  channelInfo,
-} from "@/ui/styles";
-import { Icon, Heading, vars } from "@/ui";
+  verticalStack,
+} from "@/ui/styles"
+import { isMemberOfChannel } from "@/verifications/farcaster"
 
 const app = new Frog({
   basePath: "/api",
   title: "Channel Membership Request",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
   ui: { vars },
-});
+})
 
 function SuccessImage({ title, message }: { title: string; message: string }) {
   return (
@@ -47,7 +43,7 @@ function SuccessImage({ title, message }: { title: string; message: string }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function FailureImage({ title, message }: { title: string; message: string }) {
@@ -67,12 +63,12 @@ function FailureImage({ title, message }: { title: string; message: string }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 // Initial frame
 app.frame("/", async (c) => {
-  const channelMetadata = await getChannelDetails();
+  const channelMetadata = await getChannelDetails()
 
   return c.res({
     image: (
@@ -97,22 +93,22 @@ app.frame("/", async (c) => {
     ),
     intents: [<Button value="request">Request Membership</Button>],
     action: "/request",
-  });
-});
+  })
+})
 
 // Request frame
 app.frame("/request", async (c) => {
-  const { verified, frameData } = c;
+  const { verified, frameData } = c
 
   if (!frameData) {
-    throw new Error("Missing frame data");
+    throw new Error("Missing frame data")
   }
 
   if (process.env.NODE_ENV !== "development" && !verified) {
-    throw new Error("Missing verification");
+    throw new Error("Missing verification")
   }
 
-  const fid = frameData.fid;
+  const fid = frameData.fid
 
   try {
     if ((await isMemberOfChannel(fid)).success) {
@@ -124,9 +120,10 @@ app.frame("/request", async (c) => {
           />
         ),
         intents: [<Button.Reset>Done</Button.Reset>],
-      });
+      })
     }
 
+    // TODO: Waiting on Neynar API
     // if ((await isInvitedToChannel(fid)).success) {
     //   return c.res({
     //     image: (
@@ -139,10 +136,10 @@ app.frame("/request", async (c) => {
     //   });
     // }
 
-    const verificationResult = await verifyUser(fid);
+    const verificationResult = await verifyUser(fid)
 
     if (verificationResult.success) {
-      const invited = await sendChannelInvite(fid);
+      const invited = await sendChannelInvite(fid)
 
       if (invited) {
         return c.res({
@@ -153,14 +150,14 @@ app.frame("/request", async (c) => {
             />
           ),
           intents: [<Button.Reset>Done</Button.Reset>],
-        });
+        })
       } else {
         return c.res({
           image: (
             <FailureImage title="Invite Failed" message="Please try again" />
           ),
           intents: [<Button.Reset>Done</Button.Reset>],
-        });
+        })
       }
     } else {
       return c.res({
@@ -171,7 +168,7 @@ app.frame("/request", async (c) => {
           />
         ),
         intents: [<Button.Reset>Done</Button.Reset>],
-      });
+      })
     }
   } catch (error) {
     return c.res({
@@ -182,11 +179,11 @@ app.frame("/request", async (c) => {
         />
       ),
       intents: [<Button.Reset>Try Again</Button.Reset>],
-    });
+    })
   }
-});
+})
 
-devtools(app, { serveStatic });
+devtools(app, { serveStatic })
 
-export const GET = handle(app);
-export const POST = handle(app);
+export const GET = handle(app)
+export const POST = handle(app)

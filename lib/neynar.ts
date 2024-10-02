@@ -1,25 +1,25 @@
-import { NEYNAR_API_KEY } from "@/env";
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NEYNAR_API_KEY } from "@/env"
+import { NeynarAPIClient } from "@neynar/nodejs-sdk"
 
-let neynarClient: NeynarAPIClient;
+let neynarClient: NeynarAPIClient
 
 if (NEYNAR_API_KEY) {
-  neynarClient = new NeynarAPIClient(NEYNAR_API_KEY);
+  neynarClient = new NeynarAPIClient(NEYNAR_API_KEY)
 } else {
   console.warn(
     "NEYNAR_API_KEY is not set in the .env file. Using default client."
-  );
-  neynarClient = new NeynarAPIClient("NEYNAR_API_KEY_NOT_SET");
+  )
+  neynarClient = new NeynarAPIClient("NEYNAR_API_KEY_NOT_SET")
 }
 
-export default neynarClient;
+export default neynarClient
 
 type NeynarRequestOptions = {
-  url: string;
-  method: "GET" | "POST";
-  queryParams?: Record<string, string>;
-  data?: any;
-};
+  url: string
+  method: "GET" | "POST"
+  queryParams?: Record<string, string>
+  data?: any
+}
 
 export async function makeNeynarRequest({
   url,
@@ -34,27 +34,27 @@ export async function makeNeynarRequest({
       api_key: NEYNAR_API_KEY,
       "content-type": "application/json",
     },
-  };
+  }
 
   if (queryParams) {
-    const searchParams = new URLSearchParams(queryParams);
-    url += `?${searchParams.toString()}`;
+    const searchParams = new URLSearchParams(queryParams)
+    url += `?${searchParams.toString()}`
   }
 
   if (method === "POST" && data) {
-    options.body = JSON.stringify(data);
+    options.body = JSON.stringify(data)
   }
 
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url, options)
 
     if (!response.ok) {
-      throw new Error(`HTTP error - status: ${response.status}`);
+      throw new Error(`HTTP error - status: ${response.status}`)
     }
 
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error("Neynar API error:", error);
-    throw error;
+    console.error("Neynar API error:", error)
+    throw error
   }
 }

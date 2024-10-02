@@ -7,10 +7,14 @@
     "build": "next build",
     "deploy": "vercel",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@neynar/nodejs-sdk": "^1.54.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.1",
     "frog": "latest",
     "hono": "latest",
     "lucide-react": "^0.447.0",
@@ -25,6 +29,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.14",
+    "prettier": "^3.3.3",
     "typescript": "^5",
     "vercel": "^32.4.1"
   }

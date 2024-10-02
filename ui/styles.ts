@@ -1,4 +1,4 @@
-import { CSSProperties } from "hono/jsx";
+import { CSSProperties } from "hono/jsx"
 
 export const container: CSSProperties = {
   display: "flex",
@@ -8,12 +8,12 @@ export const container: CSSProperties = {
   alignItems: "flex-start",
   backgroundColor: "#17101F",
   fontFamily: "Inter",
-};
+}
 
 export const verticalStack: CSSProperties = {
   display: "flex",
   flexDirection: "column",
-};
+}
 
 export const channelInfo: CSSProperties = {
   display: "flex",
@@ -22,13 +22,13 @@ export const channelInfo: CSSProperties = {
   height: "50%",
   paddingLeft: 128,
   paddingRight: 128,
-};
+}
 
 export const icon: CSSProperties = {
   borderRadius: "50%",
   width: 96,
   height: 96,
-};
+}
 
 export const messageBox: CSSProperties = {
   display: "flex",
@@ -37,7 +37,7 @@ export const messageBox: CSSProperties = {
   justifyContent: "center",
   height: "50%",
   width: "100%",
-};
+}
 
 export const messageText: CSSProperties = {
   display: "flex",
@@ -46,4 +46,4 @@ export const messageText: CSSProperties = {
   fontSize: 32,
   paddingLeft: 128,
   paddingRight: 128,
-};
+}
