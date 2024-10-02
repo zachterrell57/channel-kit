@@ -1,6 +1,6 @@
 import { CHANNEL_ID, SIGNER_UUID } from "@/env";
 import { makeNeynarRequest } from "@/lib/neynar";
-import { ChannelMetadata, User, Cast } from "@/types";
+import { ChannelMetadata, Cast, User } from "@/types";
 
 export async function getChannelDetails(): Promise<ChannelMetadata> {
   const url = "https://api.neynar.com/v2/farcaster/channel";

@@ -1,6 +1,5 @@
 import { ViemLocalEip712Signer } from "@farcaster/hub-nodejs";
 import neynarClient from "./neynar";
-import { getFid } from "./utils";
 import { bytesToHex, hexToBytes } from "viem";
 import { mnemonicToAccount } from "viem/accounts";
 

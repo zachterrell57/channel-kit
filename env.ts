@@ -1,5 +1,3 @@
-export const NEXT_PUBLIC_APP_URL = process.env["NEXT_PUBLIC_APP_URL"] || "";
-
 export const AUTH_TOKEN = process.env["AUTH_TOKEN"] || "";
 export const WARPCAST_API_URL = process.env["WARPCAST_API_URL"] || "";
 export const CHANNEL_ID = process.env["CHANNEL_ID"] || "";
