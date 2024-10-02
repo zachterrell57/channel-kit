@@ -12,14 +12,15 @@ export interface Font {
 export async function getFont() {
   let fontData: ArrayBuffer;
 
-  try {
-    fontData = await fetch(
-      new URL(`${NEXT_PUBLIC_APP_URL}/inter.ttf`, import.meta.url)
-    ).then((res) => res.arrayBuffer());
-  } catch (error) {
-    console.error("Error loading font:", error);
-    throw error;
-  }
+  const baseUrl =
+    "https://github.com/zachterrell57/channel-kit/raw/main/assets/";
+
+  fontData = await fetchFont(`${baseUrl}/Inter-Regular.ttf`);
 
   return { name: "inter", data: fontData, style: "normal" } satisfies Font;
+}
+
+async function fetchFont(url: string) {
+  const res = await fetch(url, { cache: "force-cache" });
+  return res.arrayBuffer();
 }

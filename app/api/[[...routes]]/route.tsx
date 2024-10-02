@@ -24,6 +24,15 @@ import {
   channelInfo,
 } from "@/ui/styles";
 import { Icon, vars } from "@/ui";
+import { getFont } from "@/ui/fonts";
+
+export const app = new Frog({
+  basePath: "/api",
+  title: "Channel Membership Request",
+  hub: neynar({ apiKey: NEYNAR_API_KEY }),
+  imageOptions: async () => ({ fonts: [await getFont()] }),
+  ui: { vars },
+});
 
 function SuccessImage({ title, message }: { title: string; message: string }) {
   return (
@@ -56,14 +65,6 @@ function FailureImage({ title, message }: { title: string; message: string }) {
     </div>
   );
 }
-
-export const app = new Frog({
-  basePath: "/api",
-  title: "Channel Membership Request",
-  hub: neynar({ apiKey: NEYNAR_API_KEY }),
-  // imageOptions: async () => ({ fonts: [await getFont()] }), // I'm going to kill myself
-  ui: { vars },
-});
 
 // Initial frame
 app.frame("/", async (c) => {
