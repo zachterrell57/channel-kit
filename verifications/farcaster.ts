@@ -1,6 +1,6 @@
 import * as farcaster from "@/data/farcaster"
 
-import { VerificationFunction, VerificationResult } from ".."
+import { VerificationFunction, VerificationResult } from "."
 
 export const isMemberOfChannel: VerificationFunction = async (
   fid: number

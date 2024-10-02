@@ -1,6 +1,6 @@
 import { getSTPStatus } from "@/data/stp"
 
-import { VerificationFunction, VerificationResult } from ".."
+import { VerificationFunction, VerificationResult } from "."
 
 export const isSubscribedWithSTP: VerificationFunction = async (
   fid: number

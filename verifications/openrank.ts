@@ -1,6 +1,6 @@
 import * as openrank from "@/data/openrank"
 
-import { VerificationFunction, VerificationResult } from ".."
+import { VerificationFunction, VerificationResult } from "."
 
 export const hasProfileRankBelow200: VerificationFunction = async (
   fid: number
