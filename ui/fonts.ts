@@ -9,13 +9,17 @@ export interface Font {
   lang?: string;
 }
 
-export async function getFont() {
+export async function getFont(font: "inter" | "inter-bold") {
   let fontData: ArrayBuffer;
 
   const baseUrl =
-    "https://github.com/zachterrell57/channel-kit/raw/main/assets/";
+    "https://github.com/zachterrell57/channel-kit/blob/main/assets/";
 
-  fontData = await fetchFont(`${baseUrl}/Inter-Regular.otf`);
+  if (font === "inter-bold") {
+    fontData = await fetchFont(`${baseUrl}/Inter-Bold.ttf`);
+  } else {
+    fontData = await fetchFont(`${baseUrl}/Inter-Regular.ttf`);
+  }
 
   return { name: "inter", data: fontData, style: "normal" } satisfies Font;
 }

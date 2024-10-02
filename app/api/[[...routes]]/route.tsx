@@ -30,7 +30,9 @@ export const app = new Frog({
   basePath: "/api",
   title: "Channel Membership Request",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
-  imageOptions: async () => ({ fonts: [await getFont()] }),
+  imageOptions: async () => ({
+    fonts: [await getFont("inter"), await getFont("inter-bold")],
+  }),
   ui: { vars },
 });
 
