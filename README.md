@@ -63,11 +63,9 @@ cp .env.example .env.local
 Edit `.env.local` and provide values for:
 
 ```
-NODE_ENV=development
 CHANNEL_ID=your_channel_id
 NEYNAR_API_KEY=your_neynar_api_key
 SIGNER_UUID=your_signer_uuid
-FARCASTER_DEVELOPER_MNEMONIC=your_farcaster_mnemonic
 ```
 
 ### 4. Run the development server
