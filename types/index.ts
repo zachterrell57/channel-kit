@@ -92,3 +92,10 @@ export type Cast = {
   } | null;
   mentioned_profiles: User[];
 };
+
+export type Member = {
+  object: string;
+  channel_id: string;
+  role: string;
+  user: User;
+};

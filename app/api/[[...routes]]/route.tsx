@@ -1,5 +1,4 @@
 /** @jsxImportSource frog/jsx */
-
 import { Button, Frog } from "frog";
 import { neynar } from "frog/hubs";
 import { handle } from "frog/next";
@@ -23,9 +22,8 @@ import {
   channelInfo,
 } from "@/ui/styles";
 import { Icon, Heading, vars } from "@/ui";
-import { getFont } from "@/ui/fonts";
 
-export const app = new Frog({
+const app = new Frog({
   basePath: "/api",
   title: "Channel Membership Request",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
@@ -38,7 +36,7 @@ function SuccessImage({ title, message }: { title: string; message: string }) {
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
           <Icon name="user-check" color="green700" size="44" />
-          <div style={{ paddingTop: 18, display: "flex" }}>
+          <div style={{ paddingTop: 8, display: "flex" }}>
             <Heading size="32" font={"default"} weight="600">
               {title}
             </Heading>
@@ -58,7 +56,7 @@ function FailureImage({ title, message }: { title: string; message: string }) {
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
           <Icon name="circle-x" color="red700" size="44" />
-          <div style={{ paddingTop: 18, display: "flex" }}>
+          <div style={{ paddingTop: 8, display: "flex" }}>
             <Heading size="32" font={"default"} weight="600">
               {title}
             </Heading>
@@ -82,7 +80,7 @@ app.frame("/", async (c) => {
         <div style={{ ...verticalStack }}>
           <div style={{ ...channelInfo }}>
             <img style={{ ...icon }} src={channelMetadata.image_url} />
-            <div style={{ paddingTop: 18, display: "flex" }}>
+            <div style={{ paddingTop: 10, display: "flex" }}>
               <Heading size="32" font={"default"} weight="600">
                 Join /{channelMetadata.name}
               </Heading>
@@ -117,17 +115,17 @@ app.frame("/request", async (c) => {
   const fid = frameData.fid;
 
   try {
-    // if ((await isMemberOfChannel(fid)).success) {
-    //   return c.res({
-    //     image: (
-    //       <FailureImage
-    //         title="Already a Member"
-    //         message="You are already a member of the channel"
-    //       />
-    //     ),
-    //     intents: [<Button.Reset>Done</Button.Reset>],
-    //   });
-    // }
+    if ((await isMemberOfChannel(fid)).success) {
+      return c.res({
+        image: (
+          <FailureImage
+            title="Already a Member"
+            message="You are already a member of the channel"
+          />
+        ),
+        intents: [<Button.Reset>Done</Button.Reset>],
+      });
+    }
 
     // if ((await isInvitedToChannel(fid)).success) {
     //   return c.res({

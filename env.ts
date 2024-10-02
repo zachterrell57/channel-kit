@@ -1,5 +1,3 @@
-export const AUTH_TOKEN = process.env["AUTH_TOKEN"] || "";
-export const WARPCAST_API_URL = process.env["WARPCAST_API_URL"] || "";
 export const CHANNEL_ID = process.env["CHANNEL_ID"] || "";
 export const NEYNAR_API_KEY = process.env["NEYNAR_API_KEY"] || "";
 export const FARCASTER_DEVELOPER_MNEMONIC =

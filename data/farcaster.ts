@@ -1,6 +1,20 @@
 import { CHANNEL_ID, SIGNER_UUID } from "@/env";
 import { makeNeynarRequest } from "@/lib/neynar";
-import { ChannelMetadata, Cast, User } from "@/types";
+import { ChannelMetadata, Cast, User, Member } from "@/types";
+
+export type MembersResponse = {
+  members: Member[];
+};
+export async function getChannelMembers(): Promise<MembersResponse> {
+  const url = "https://api.neynar.com/v2/farcaster/channel/member/list";
+  const response = await makeNeynarRequest({
+    url,
+    method: "GET",
+    queryParams: { channel_id: CHANNEL_ID },
+  });
+
+  return response as MembersResponse;
+}
 
 export async function getChannelDetails(): Promise<ChannelMetadata> {
   const url = "https://api.neynar.com/v2/farcaster/channel";

@@ -1,11 +1,12 @@
 import { VerificationFunction, VerificationResult } from "..";
 import * as farcaster from "@/data/farcaster";
-import { CHANNEL_ID } from "@/env";
 
 export const isMemberOfChannel: VerificationFunction = async (
   fid: number
 ): Promise<VerificationResult> => {
-  return { success: true, message: "Not implemented" };
+  const members = await farcaster.getChannelMembers();
+
+  return { success: members.members.some((member) => member.user.fid === fid) };
 };
 
 export const isInvitedToChannel: VerificationFunction = async (
