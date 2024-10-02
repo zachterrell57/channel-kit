@@ -30,14 +30,6 @@ export const icon: CSSProperties = {
   height: 96,
 };
 
-export const title: CSSProperties = {
-  fontSize: 48,
-  fontFamily: "inter",
-  fontWeight: "600",
-  paddingTop: 8,
-  color: "#FFFFFF",
-};
-
 export const messageBox: CSSProperties = {
   display: "flex",
   backgroundColor: "#1F1827",

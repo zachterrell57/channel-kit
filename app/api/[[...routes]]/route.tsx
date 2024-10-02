@@ -17,22 +17,18 @@ import {
 import {
   icon,
   container,
-  title as titleStyles,
   verticalStack,
   messageBox,
   messageText,
   channelInfo,
 } from "@/ui/styles";
-import { Icon, vars } from "@/ui";
+import { Icon, Heading, vars } from "@/ui";
 import { getFont } from "@/ui/fonts";
 
 export const app = new Frog({
   basePath: "/api",
   title: "Channel Membership Request",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
-  imageOptions: async () => ({
-    fonts: [await getFont("inter"), await getFont("inter-bold")],
-  }),
   ui: { vars },
 });
 
@@ -42,7 +38,11 @@ function SuccessImage({ title, message }: { title: string; message: string }) {
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
           <Icon name="user-check" color="green700" size="44" />
-          <p style={{ ...titleStyles }}>{title}</p>
+          <div style={{ paddingTop: 18, display: "flex" }}>
+            <Heading size="32" font={"default"} weight="600">
+              {title}
+            </Heading>
+          </div>
         </div>
         <div style={{ ...messageBox }}>
           <div style={{ ...messageText }}>{message}</div>
@@ -58,7 +58,11 @@ function FailureImage({ title, message }: { title: string; message: string }) {
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
           <Icon name="circle-x" color="red700" size="44" />
-          <p style={{ ...titleStyles }}>{title}</p>
+          <div style={{ paddingTop: 18, display: "flex" }}>
+            <Heading size="32" font={"default"} weight="600">
+              {title}
+            </Heading>
+          </div>
         </div>
         <div style={{ ...messageBox }}>
           <div style={{ ...messageText }}>{message}</div>
@@ -78,7 +82,11 @@ app.frame("/", async (c) => {
         <div style={{ ...verticalStack }}>
           <div style={{ ...channelInfo }}>
             <img style={{ ...icon }} src={channelMetadata.image_url} />
-            <p style={{ ...titleStyles }}>Join /{channelMetadata.name}</p>
+            <div style={{ paddingTop: 18, display: "flex" }}>
+              <Heading size="32" font={"default"} weight="600">
+                Join /{channelMetadata.name}
+              </Heading>
+            </div>
           </div>
           <div style={{ ...messageBox }}>
             <div style={{ ...messageText }}>
