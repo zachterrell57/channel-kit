@@ -9,8 +9,8 @@ fi
 # Read .env file and add each variable to Vercel
 while IFS='=' read -r key value
 do
-    # Ignore comments and empty lines
-    if [[ ! $key =~ ^# && -n $key ]]; then
+    # Ignore comments, empty lines, and NODE_ENV
+    if [[ ! $key =~ ^# && -n $key && $key != "NODE_ENV" ]]; then
         # Remove any leading/trailing whitespace
         key=$(echo $key | xargs)
         value=$(echo $value | xargs)
@@ -21,4 +21,4 @@ do
     fi
 done < .env.local
 
-echo "All environment variables have been added to Vercel."
+echo "All environment variables (except NODE_ENV) have been added to Vercel."
