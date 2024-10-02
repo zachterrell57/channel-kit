@@ -32,7 +32,8 @@ export const icon: CSSProperties = {
 
 export const title: CSSProperties = {
   fontSize: 48,
-  fontWeight: "bold",
+  fontFamily: "inter",
+  fontWeight: "600",
   paddingTop: 8,
   color: "#FFFFFF",
 };

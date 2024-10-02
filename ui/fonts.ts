@@ -15,7 +15,7 @@ export async function getFont() {
   const baseUrl =
     "https://github.com/zachterrell57/channel-kit/raw/main/assets/";
 
-  fontData = await fetchFont(`${baseUrl}/Inter-Regular.ttf`);
+  fontData = await fetchFont(`${baseUrl}/Inter-Regular.otf`);
 
   return { name: "inter", data: fontData, style: "normal" } satisfies Font;
 }
