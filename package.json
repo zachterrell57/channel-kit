@@ -12,6 +12,7 @@
     "create-signer": "tsx scripts/create-neynar-signer.ts"
   },
   "dependencies": {
+    "@farcaster/hub-nodejs": "^0.12.4",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@neynar/nodejs-sdk": "^1.54.1",
     "@types/qrcode-terminal": "^0.12.2",
