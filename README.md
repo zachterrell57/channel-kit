@@ -77,6 +77,41 @@ yarn dev
 
 The application will be available at `http://localhost:3000/api/dev`.
 
+## Deploying to Vercel
+
+When ready, we can deploy our application:
+
+```bash
+yarn run deploy
+```
+
+Add our environment variables and redeploy:
+
+```bash
+yarn run upload-env
+```
+
+Your project should now be live!
+
+## Viewing your Frame
+
+Let's first grab the URL of our Frame from the Vercel Dashboard:
+<img width="1232" alt="image" src="https://github.com/user-attachments/assets/2b3b5927-1052-4c9f-baf1-3ba537915e93">
+
+
+Alternatively, you can run this command and get the first alias:
+
+```bash
+yarn vercel inspect [deployment-url]
+```
+
+<img width="525" alt="image" src="https://github.com/user-attachments/assets/5cc3adb8-0824-48d1-bb41-1729fe4491e9">
+
+
+Now we can head to the Warpcast frame validator and paste the URL to see our live Frame:
+
+[https://warpcast.com/~/developers/frames](https://warpcast.com/~/developers/frames)
+
 ## Verifications
 
 ChannelKit comes with a set of basic verifications to determine user eligibility for channel membership. These verifications are modular and can be easily customized or extended.
@@ -114,40 +149,6 @@ const verificationFunctions: VerificationFunction[] = [
 ]
 ```
 
-## Deploying to Vercel
-
-When ready, we can deploy our application:
-
-```bash
-yarn run deploy
-```
-
-Add our environment variables and redeploy:
-
-```bash
-yarn run upload-env
-```
-
-Your project should now be live!
-
-## Viewing your Frame
-
-Let's first grab the URL of our Frame from the Vercel Dashboard:
-<img width="1232" alt="image" src="https://github.com/user-attachments/assets/2b3b5927-1052-4c9f-baf1-3ba537915e93">
-
-
-Alternatively, you can run this command and get the first alias:
-
-```bash
-yarn vercel inspect [deployment-url]
-```
-
-<img width="525" alt="image" src="https://github.com/user-attachments/assets/5cc3adb8-0824-48d1-bb41-1729fe4491e9">
-
-
-Now we can head to the Warpcast frame validator and paste the URL to see our live Frame:
-[https://warpcast.com/~/developers/frames](https://warpcast.com/~/developers/frames)
-
 ## Customization
 
 - Modify the verification criteria in `verifications/index.ts`
@@ -169,6 +170,10 @@ ChannelKit is intended to be a community project! Contributions are welcome foll
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Appendix
 
@@ -198,7 +203,3 @@ When customizing:
 3. Add your new verification function to the `verificationFunctions` array in `verifications/index.ts` to include it in the verification process.
 
 This modular approach allows you to easily extend and modify the verification system to suit your specific channel membership criteria.
-
-## License
-
-This project is licensed under the MIT License.
