@@ -139,7 +139,8 @@ Your project should now be live!
 ## Viewing your Frame
 
 Let's first grab the URL of our Frame from the Vercel Dashboard:
-![alt text](<CleanShot 2024-10-02 at 17.32.51@2x.png>)
+<img width="1232" alt="image" src="https://github.com/user-attachments/assets/2b3b5927-1052-4c9f-baf1-3ba537915e93">
+
 
 Alternatively, you can run this command and get the first alias:
 
@@ -147,7 +148,8 @@ Alternatively, you can run this command and get the first alias:
 yarn vercel inspect [deployment-url]
 ```
 
-<img src="CleanShot 2024-10-02 at 17.33.56@2x.png" alt="alt text" width="400"/>
+<img width="525" alt="image" src="https://github.com/user-attachments/assets/5cc3adb8-0824-48d1-bb41-1729fe4491e9">
+
 
 Now we can head to the Warpcast frame validator and paste the URL to see our live Frame:
 [https://warpcast.com/~/developers/frames](https://warpcast.com/~/developers/frames)
