@@ -16,7 +16,7 @@ export type VerificationFunction = (fid: number) => Promise<VerificationResult>
 
 const verificationFunctions: VerificationFunction[] = [
   // Check if the user is considered a power user based on Warpcast power badges
-  isPowerUser,
+  // isPowerUser,
 
   // Verify if the user has a verified Ethereum address
   hasVerifiedEthAddress,

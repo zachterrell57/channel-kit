@@ -20,8 +20,8 @@ export const channelInfo: CSSProperties = {
   alignItems: "center",
   gap: 32,
   height: "50%",
-  paddingLeft: 128,
-  paddingRight: 128,
+  paddingLeft: 80,
+  paddingRight: 80,
 }
 
 export const icon: CSSProperties = {
@@ -44,6 +44,6 @@ export const messageText: CSSProperties = {
   width: "100%",
   color: "#9FA3AF",
   fontSize: 40,
-  paddingLeft: 128,
-  paddingRight: 128,
+  paddingLeft: 80,
+  paddingRight: 80,
 }
