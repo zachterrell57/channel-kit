@@ -37,6 +37,6 @@
     "eslint-config-next": "14.2.14",
     "prettier": "^3.3.3",
     "typescript": "^5",
-    "vercel": "^32.4.1"
+    "vercel": "^37.6.1"
   }
 }
