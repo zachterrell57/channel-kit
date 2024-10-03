@@ -1,6 +1,5 @@
 {
   "name": "channel-kit",
-  "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -9,19 +8,24 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "upload-env": "chmod +x scripts/add-env-to-vercel.sh && ./scripts/add-env-to-vercel.sh"
+    "upload-env": "chmod +x scripts/add-env-to-vercel.sh && ./scripts/add-env-to-vercel.sh",
+    "create-signer": "tsx scripts/create-neynar-signer.ts"
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@neynar/nodejs-sdk": "^1.54.1",
+    "@types/qrcode-terminal": "^0.12.2",
+    "dotenv": "^16.4.5",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.1",
     "frog": "latest",
     "hono": "latest",
     "lucide-react": "^0.447.0",
     "next": "latest",
+    "qrcode-terminal": "^0.12.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "tsx": "^4.19.1"
   },
   "devDependencies": {
     "@types/node": "^20",

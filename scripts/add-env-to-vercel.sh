@@ -23,14 +23,14 @@ do
         value=$(echo "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
         
         # Skip NODE_ENV
-        if [[ $key != "NODE_ENV" ]]; then
+        if [[ $key != "NODE_ENV" && $key != "FARCASTER_MNEMONIC" ]]; then
             # Add the environment variable to Vercel            
             printf "%s" "$value" | vercel env add "$key" production
         fi
     fi
 done < .env.local
 
-echo "All environment variables (except NODE_ENV) have been added to Vercel."
+echo "All environment variables have been added to Vercel."
 
 # Redeploy the project
 echo "Redeploying the project..."
