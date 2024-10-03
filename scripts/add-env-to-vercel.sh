@@ -10,17 +10,23 @@ if [ ! -f .env.local ]; then
 fi
 
 # Read .env file and add each variable to Vercel
-while IFS='=' read -r key value
+while IFS= read -r line
 do
-    # Ignore comments, empty lines, and NODE_ENV
-    if [[ ! $key =~ ^# && -n $key && $key != "NODE_ENV" ]]; then
-        # Remove any leading/trailing whitespace
-        key=$(echo $key | xargs)
-        value=$(echo $value | xargs)
+    # Ignore comments and empty lines
+    if [[ ! $line =~ ^# && -n $line ]]; then
+        # Split the line into key and value
+        key="${line%%=*}"
+        value="${line#*=}"
         
-        # Add the environment variable to Vercel
-        echo "Adding $key to Vercel..."
-        echo $value | vercel env add $key production
+        # Trim whitespace from key and value
+        key=$(echo "$key" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+        value=$(echo "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+        
+        # Skip NODE_ENV
+        if [[ $key != "NODE_ENV" ]]; then
+            # Add the environment variable to Vercel            
+            printf "%s" "$value" | vercel env add "$key" production
+        fi
     fi
 done < .env.local
 
