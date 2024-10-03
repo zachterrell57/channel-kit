@@ -6,7 +6,7 @@ ChannelKit is an open-source Next.js application built with [Frog.js](https://fr
 
 ## Prerequisites
 
-- [Node.js] (v14 or later)
+- [Node.js] (v22 or later)
 - [Yarn] package manager
 - [Farcaster] account
 - [Neynar] API key
