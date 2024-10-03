@@ -175,7 +175,11 @@ app.frame("/request", async (c) => {
       image: (
         <FailureImage
           title="Error"
-          message={error instanceof Error ? error.message : "Unknown error"}
+          message={
+            error instanceof Error
+              ? `Error: ${error.name} - ${error.message} - ${error.cause}`
+              : "Unknown error"
+          }
         />
       ),
       intents: [<Button.Reset>Try Again</Button.Reset>],
