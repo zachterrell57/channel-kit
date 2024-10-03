@@ -122,7 +122,7 @@ When ready, we can deploy our application:
 yarn run deploy
 ```
 
-Now we can add our environment variables and redeploy:
+Add our environment variables and redeploy:
 
 ```bash
 yarn run upload-env
