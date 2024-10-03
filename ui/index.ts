@@ -15,4 +15,7 @@ export const { Icon, Heading, vars } = createSystem({
       },
     ],
   },
+  fontSizes: {
+    "42": 42,
+  },
 })
