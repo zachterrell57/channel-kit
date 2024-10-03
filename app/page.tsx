@@ -2,11 +2,10 @@ import type { Metadata } from "next"
 import { getFrameMetadata } from "frog/next"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const frameTags = await getFrameMetadata(
-    `${process.env.VERCEL_URL || "http://localhost:3000"}/api`
-  )
+  const url = process.env.VERCEL_URL || "http://localhost:3000"
+  const frameMetadata = await getFrameMetadata(`${url}/api`)
   return {
-    other: frameTags,
+    other: frameMetadata,
   }
 }
 

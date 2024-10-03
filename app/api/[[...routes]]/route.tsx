@@ -21,7 +21,7 @@ import { isMemberOfChannel } from "@/verifications/farcaster"
 
 const app = new Frog({
   basePath: "/api",
-  title: "Channel Membership Request",
+  title: "ChannelKit",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
   ui: { vars },
 })

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure this script has execute permissions:
+# chmod +x scripts/add-env-to-vercel.sh
+
 # Check if .env file exists
 if [ ! -f .env.local ]; then
     echo "Error: .env.local file not found"
@@ -22,3 +25,7 @@ do
 done < .env.local
 
 echo "All environment variables (except NODE_ENV) have been added to Vercel."
+
+# Redeploy the project
+echo "Redeploying the project..."
+vercel deploy --prod

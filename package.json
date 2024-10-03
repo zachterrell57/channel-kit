@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "vercel",
+    "deploy": "vercel deploy --prod",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "upload-env": "chmod +x scripts/add-env-to-vercel.sh && ./scripts/add-env-to-vercel.sh"
   },
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",

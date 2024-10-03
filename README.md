@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-ChannelKit is an open-source Next.js application built with [Frog.js](https://frog.fm), providing a customizable Farcaster Frame for managing channel memberships. Designed for developers, it offers a flexible foundation for creating and managing membership requests to Farcaster channels.
+ChannelKit is an open-source Next.js application built with [Frog.js](https://frog.fm) and deployed on [Vercel](https://vercel.com), providing a customizable Farcaster Frame for managing channel memberships. Designed for developers, it offers a flexible foundation for creating and managing membership requests to Farcaster channels.
 
 ## Prerequisites
 
@@ -10,22 +10,24 @@ ChannelKit is an open-source Next.js application built with [Frog.js](https://fr
 - [Yarn] package manager
 - [Farcaster] account
 - [Neynar] API key
+- [Vercel] account
+- [Vercel CLI]
 
 [Node.js]: https://nodejs.org/
 [Yarn]: https://yarnpkg.com/
 [Farcaster]: https://www.farcaster.xyz/
 [Neynar]: https://neynar.com/
+[Vercel]: https://vercel.com/
+[Vercel CLI]: https://vercel.com/docs/cli
 
 ## How it works
+
 1. Channel owner deploys this project to Vercel
 2. Channel owner casts frame in channel, optionally pins for better visibility
-  TODO: Add image
+   TODO: Add image
 3. Prespective member clicks "Request Membership" button on frame
-4. Verifications run in background, and automatically output an accepted / denied state
-    - If accepted, user is automatically sent an invite
-    - If denied message is shown with reasoning
-![CleanShot 2024-10-02 at 15 23 14@2x](https://github.com/user-attachments/assets/2c1d6cee-884a-4b0b-a414-62884a05267f)
-
+4. Verifications run in background, and automatically output an accepted / denied state - If accepted, user is automatically sent an invite - If denied message is shown with reasoning
+   ![CleanShot 2024-10-02 at 15 23 14@2x](https://github.com/user-attachments/assets/2c1d6cee-884a-4b0b-a414-62884a05267f)
 
 ## Getting Started
 
@@ -39,7 +41,6 @@ ChannelKit is an open-source Next.js application built with [Frog.js](https://fr
 - If you want to add modules, customize extensively, or contribute to the codebase:
   1. Fork the repository on GitHub using this button:
      ![CleanShot 2024-10-02 at 14 46 50@2x](https://github.com/user-attachments/assets/8ed66f5b-de31-4532-afb4-16fb961b9d10)
-     
   2. Clone your forked repository:
      ```bash
      git clone https://github.com/your-username/channel-kit.git
@@ -96,7 +97,9 @@ Developers are encouraged to add their own custom verifications based on their s
 Example of a custom verification:
 
 ```typescript
-export const hasSpecificBadge: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
+export const hasSpecificBadge: VerificationFunction = async (
+  fid: number
+): Promise<VerificationResult> => {
   // Implement your verification logic here
   return { success: true, message: "User has the specific badge" }
 }
@@ -111,20 +114,43 @@ const verificationFunctions: VerificationFunction[] = [
 ]
 ```
 
-## Deployment
+## Deploying to Vercel
 
-### Deploying to Vercel
+When ready, we can deploy our application:
 
-1. Push your code to a GitHub repository.
-2. Log in to your Vercel account and click "New Project".
-3. Import your GitHub repository.
-4. Configure the project:
-   - Framework Preset: Next.js
-   - Root Directory: ./
-   - Build Command: `yarn build`
-   - Output Directory: .next
-5. Add your environment variables in the Vercel project settings.
-6. Deploy the project.
+```bash
+yarn run deploy
+```
+
+Now we can add our environment variables and redeploy:
+
+```bash
+yarn run upload-env
+```
+
+Now we can run:
+
+```bash
+yarn vercel ls
+```
+
+Your project should now be live!
+
+## Viewing your Frame
+
+Let's first grab the URL of our Frame from the Vercel Dashboard:
+![alt text](<CleanShot 2024-10-02 at 17.32.51@2x.png>)
+
+Alternatively, you can run this command and get the first alias:
+
+```bash
+yarn vercel inspect [deployment-url]
+```
+
+<img src="CleanShot 2024-10-02 at 17.33.56@2x.png" alt="alt text" width="400"/>
+
+Now we can head to the Warpcast frame validator and paste the URL to see our live Frame:
+[https://warpcast.com/~/developers/frames](https://warpcast.com/~/developers/frames)
 
 ## Customization
 
@@ -149,9 +175,11 @@ ChannelKit is intended to be a community project! Contributions are welcome foll
 5. Open a Pull Request
 
 ## Appendix
+
 ### Understanding the Verification and Data Structure
 
 1. Data Fetching (`data/farcaster.ts`):
+
    - This file contains functions for fetching data from the Farcaster API via Neynar.
    - It includes methods like `getChannelMembers()`, `getUser()`, and `getUserCasts()`.
    - These functions handle the raw API calls and return structured data.
@@ -162,11 +190,13 @@ ChannelKit is intended to be a community project! Contributions are welcome foll
    - These functions use the `VerificationFunction` type and return a `VerificationResult`.
 
 This separation allows you to:
+
 - Add new API calls in `data/farcaster.ts` without changing the verification logic.
 - Create new verification functions in `verifications/farcaster/index.ts` that use existing or new data fetching methods.
 - Easily extend the system with new data sources or verification providers by adding new files in the `data/` and `verifications/` directories.
 
 When customizing:
+
 1. If you need new data either from an API or onchain, add a function to `data/farcaster.ts`.
 2. To create a new verification, add a function to `verifications/farcaster/index.ts` and use the data fetching functions as needed.
 3. Add your new verification function to the `verificationFunctions` array in `verifications/index.ts` to include it in the verification process.
