@@ -128,12 +128,6 @@ Add our environment variables and redeploy:
 yarn run upload-env
 ```
 
-Now we can run:
-
-```bash
-yarn vercel ls
-```
-
 Your project should now be live!
 
 ## Viewing your Frame
