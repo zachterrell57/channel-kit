@@ -26,8 +26,8 @@ export const channelInfo: CSSProperties = {
 
 export const icon: CSSProperties = {
   borderRadius: "50%",
-  width: 96,
-  height: 96,
+  width: 128,
+  height: 128,
 }
 
 export const messageBox: CSSProperties = {
@@ -43,7 +43,7 @@ export const messageText: CSSProperties = {
   display: "flex",
   width: "100%",
   color: "#9FA3AF",
-  fontSize: 32,
+  fontSize: 40,
   paddingLeft: 128,
   paddingRight: 128,
 }

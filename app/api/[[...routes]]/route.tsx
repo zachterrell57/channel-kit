@@ -31,9 +31,9 @@ function SuccessImage({ title, message }: { title: string; message: string }) {
     <div style={{ ...container }}>
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
-          <Icon name="user-check" color="green700" size="44" />
+          <Icon name="user-check" color="green700" size="52" />
           <div style={{ paddingTop: 8, display: "flex" }}>
-            <Heading size="32" font={"default"} weight="600">
+            <Heading size="48" font={"default"} weight="600">
               {title}
             </Heading>
           </div>
@@ -51,9 +51,9 @@ function FailureImage({ title, message }: { title: string; message: string }) {
     <div style={{ ...container }}>
       <div style={{ ...verticalStack }}>
         <div style={{ ...channelInfo }}>
-          <Icon name="circle-x" color="red700" size="44" />
+          <Icon name="circle-x" color="red700" size="52" />
           <div style={{ paddingTop: 8, display: "flex" }}>
-            <Heading size="32" font={"default"} weight="600">
+            <Heading size="48" font={"default"} weight="600">
               {title}
             </Heading>
           </div>
@@ -77,7 +77,7 @@ app.frame("/", async (c) => {
           <div style={{ ...channelInfo }}>
             <img style={{ ...icon }} src={channelMetadata.image_url} />
             <div style={{ paddingTop: 10, display: "flex" }}>
-              <Heading size="32" font={"default"} weight="600">
+              <Heading size="48" font={"default"} weight="600">
                 Join /{channelMetadata.name}
               </Heading>
             </div>
