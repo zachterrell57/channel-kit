@@ -17,7 +17,7 @@ import {
   messageText,
   verticalStack,
 } from "@/ui/styles"
-import { isMemberOfChannel } from "@/verifications/farcaster"
+import { followsChannel, isMemberOfChannel } from "@/verifications/farcaster"
 
 const app = new Frog({
   basePath: "/api",
@@ -136,6 +136,18 @@ app.frame("/request", async (c) => {
     //   });
     // }
 
+    if (!(await followsChannel(fid)).success) {
+      return c.res({
+        image: (
+          <FailureImage
+            title="Not Following Channel"
+            message="Follow the channel and then try again"
+          />
+        ),
+        intents: [<Button.Reset>Try Again</Button.Reset>],
+      })
+    }
+
     const verificationResult = await verifyUser(fid)
 
     if (verificationResult.success) {
@@ -177,7 +189,7 @@ app.frame("/request", async (c) => {
           title="Error"
           message={
             error instanceof Error
-              ? `Error: ${error.name} - ${error.message} - ${error.cause}`
+              ? `Error: ${error.name} - ${error.message}`
               : "Unknown error"
           }
         />

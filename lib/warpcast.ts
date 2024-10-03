@@ -1,20 +1,4 @@
-import { NEYNAR_API_KEY } from "@/env"
-import { NeynarAPIClient } from "@neynar/nodejs-sdk"
-
-let neynarClient: NeynarAPIClient
-
-if (NEYNAR_API_KEY) {
-  neynarClient = new NeynarAPIClient(NEYNAR_API_KEY)
-} else {
-  console.warn(
-    "NEYNAR_API_KEY is not set in the .env file. Using default client."
-  )
-  neynarClient = new NeynarAPIClient("NEYNAR_API_KEY_NOT_SET")
-}
-
-export default neynarClient
-
-type NeynarRequestOptions = {
+type WarpcastRequestOptions = {
   url: string
   method: "GET" | "POST"
   queryParams?: Record<string, string>
@@ -25,18 +9,17 @@ type NeynarRequestOptions = {
   }
 }
 
-export async function makeNeynarRequest({
+export async function makeWarpcastRequest({
   url,
   method,
   queryParams,
   data,
   pagination,
-}: NeynarRequestOptions): Promise<any> {
+}: WarpcastRequestOptions): Promise<any> {
   const options: RequestInit = {
     method,
     headers: {
       accept: "application/json",
-      api_key: NEYNAR_API_KEY,
       "content-type": "application/json",
     },
   }
@@ -63,9 +46,8 @@ export async function makeNeynarRequest({
     console.error("Error data", errorData)
 
     const error = new Error()
-
-    error.name = "Neynar API Error"
-    error.message = JSON.stringify(errorData.message[0].message)
+    error.name = "Warpcast API Error"
+    error.message = JSON.stringify(errorData.errors[0].message)
 
     throw error
   }

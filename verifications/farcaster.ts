@@ -16,6 +16,28 @@ export const isInvitedToChannel: VerificationFunction = async (
   return { success: true, message: "Not implemented" }
 }
 
+export const followsChannel: VerificationFunction = async (
+  fid: number
+): Promise<VerificationResult> => {
+  try {
+    let cursor: string | undefined
+    do {
+      const response = await farcaster.getChannelFollowers(100, cursor)
+
+      if (response.result.users.some((user) => user.fid === fid)) {
+        return { success: true }
+      }
+
+      cursor = response.next?.cursor
+    } while (cursor)
+
+    return { success: false, message: "User does not follow the channel" }
+  } catch (error) {
+    console.error("Error checking if user follows channel:", error)
+    return { success: false, message: "Error checking channel follow status" }
+  }
+}
+
 export const isPowerUser: VerificationFunction = async (
   fid: number
 ): Promise<VerificationResult> => {

@@ -2,6 +2,7 @@ import { CHANNEL_ID, SIGNER_UUID } from "@/env"
 import { Cast, ChannelMetadata, Member, User } from "@/types"
 
 import { makeNeynarRequest } from "@/lib/neynar"
+import { makeWarpcastRequest } from "@/lib/warpcast"
 
 export type MembersResponse = {
   members: Member[]
@@ -15,6 +16,40 @@ export async function getChannelMembers(): Promise<MembersResponse> {
   })
 
   return response as MembersResponse
+}
+
+export type ChannelFollowersResponse = {
+  result: {
+    users: {
+      fid: number
+      followedAt: number
+    }[]
+  }
+  next?: {
+    cursor: string
+  }
+}
+
+export async function getChannelFollowers(
+  limit: number = 100,
+  cursor?: string
+): Promise<ChannelFollowersResponse> {
+  const url = "https://api.warpcast.com/v1/channel-followers"
+  const queryParams: Record<string, string> = {
+    channelId: CHANNEL_ID,
+  }
+
+  const response = await makeWarpcastRequest({
+    url,
+    method: "GET",
+    queryParams,
+    pagination: {
+      limit,
+      cursor,
+    },
+  })
+
+  return response as ChannelFollowersResponse
 }
 
 export async function getChannelDetails(): Promise<ChannelMetadata> {
