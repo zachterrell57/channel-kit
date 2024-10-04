@@ -1,42 +1,38 @@
 {
-  "name": "channel-kit",
-  "type": "module",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "deploy": "vercel deploy --prod",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "upload-env": "chmod +x scripts/add-env-to-vercel.sh && ./scripts/add-env-to-vercel.sh",
-    "create-signer": "tsx scripts/create-neynar-signer.ts"
-  },
-  "dependencies": {
-    "@farcaster/hub-nodejs": "^0.12.4",
-    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
-    "@neynar/nodejs-sdk": "^1.54.1",
-    "@types/qrcode-terminal": "^0.12.2",
-    "dotenv": "^16.4.5",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.37.1",
-    "frog": "latest",
-    "hono": "latest",
-    "lucide-react": "^0.447.0",
-    "next": "latest",
-    "qrcode-terminal": "^0.12.0",
-    "react": "latest",
-    "react-dom": "latest",
-    "tsx": "^4.19.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/prompts": "^2.4.9",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.14",
-    "prettier": "^3.3.3",
-    "typescript": "^5",
-    "vercel": "^37.6.1"
-  }
+	"name": "channel-kit",
+	"type": "module",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"deploy": "vercel deploy --prod",
+		"start": "next start",
+		"lint": "next lint",
+		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+		"upload-env": "chmod +x scripts/add-env-to-vercel.sh && ./scripts/add-env-to-vercel.sh",
+		"create-signer": "tsx scripts/create-neynar-signer.ts"
+	},
+	"dependencies": {
+		"@farcaster/hub-nodejs": "^0.12.4",
+		"@neynar/nodejs-sdk": "^1.54.1",
+		"@types/qrcode-terminal": "^0.12.2",
+		"dotenv": "^16.4.5",
+		"frog": "latest",
+		"hono": "latest",
+		"lucide-react": "^0.447.0",
+		"next": "latest",
+		"qrcode-terminal": "^0.12.0",
+		"react": "latest",
+		"react-dom": "latest",
+		"tsx": "^4.19.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.3",
+		"@types/node": "^20",
+		"@types/prompts": "^2.4.9",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"typescript": "^5",
+		"vercel": "^37.6.1"
+	},
+	"packageManager": "yarn@4.3.0+sha512.1606bef7c84bc7d83b8576063de2fd08f7d69f9939015bed800f9585a002390268ecc777e9feeba7e26e9556aef6beaad4806968db2182ab5dd3e955ab3b9a0b"
 }
