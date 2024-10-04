@@ -4,16 +4,16 @@ import {
   hasVerifiedEthAddress,
   hasVerifiedSolAddress,
   isPowerUser,
-} from "./farcaster"
-import { hasProfileRankBelow200 } from "./openrank"
-import { isSubscribedWithSTP } from "./stp"
+} from "./farcaster";
+import { hasProfileRankBelow200 } from "./openrank";
+import { isSubscribedWithSTP } from "./stp";
 
 export type VerificationResult = {
-  success: boolean
-  message?: string
-}
+  success: boolean;
+  message?: string;
+};
 
-export type VerificationFunction = (fid: number) => Promise<VerificationResult>
+export type VerificationFunction = (fid: number) => Promise<VerificationResult>;
 
 const verificationFunctions: VerificationFunction[] = [
   // Check if the user is considered a power user based on Warpcast power badges
@@ -36,14 +36,14 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Check if the user is subscribed with STP (Subscription Token Protocol)
   // isSubscribedWithSTP,
-]
+];
 
 export async function verifyUser(fid: number): Promise<VerificationResult> {
   for (const fn of verificationFunctions) {
-    const result = await fn(fid)
+    const result = await fn(fid);
     if (!result.success) {
-      return result // Fail fast if any verification fails
+      return result; // Fail fast if any verification fails
     }
   }
-  return { success: true } // No message needed for success
+  return { success: true }; // No message needed for success
 }

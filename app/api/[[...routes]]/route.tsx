@@ -1,30 +1,23 @@
 /** @jsxImportSource frog/jsx */
-import { NEYNAR_API_KEY } from "@/env"
-import { Heading, Icon, vars } from "@/ui"
-import { verifyUser } from "@/verifications"
-import { Button, Frog } from "frog"
-import { devtools } from "frog/dev"
-import { neynar } from "frog/hubs"
-import { handle } from "frog/next"
-import { serveStatic } from "frog/serve-static"
+import { NEYNAR_API_KEY } from "@/env";
+import { Heading, Icon, vars } from "@/ui";
+import { verifyUser } from "@/verifications";
+import { Button, Frog } from "frog";
+import { devtools } from "frog/dev";
+import { neynar } from "frog/hubs";
+import { handle } from "frog/next";
+import { serveStatic } from "frog/serve-static";
 
-import { getChannelDetails, sendChannelInvite } from "@/data/farcaster"
-import {
-  channelInfo,
-  container,
-  icon,
-  messageBox,
-  messageText,
-  verticalStack,
-} from "@/ui/styles"
-import { followsChannel, isMemberOfChannel } from "@/verifications/farcaster"
+import { getChannelDetails, sendChannelInvite } from "@/data/farcaster";
+import { channelInfo, container, icon, messageBox, messageText, verticalStack } from "@/ui/styles";
+import { followsChannel, isMemberOfChannel } from "@/verifications/farcaster";
 
 const app = new Frog({
   basePath: "/api",
   title: "ChannelKit",
   hub: neynar({ apiKey: NEYNAR_API_KEY }),
   ui: { vars },
-})
+});
 
 function SuccessImage({ title, message }: { title: string; message: string }) {
   return (
@@ -43,7 +36,7 @@ function SuccessImage({ title, message }: { title: string; message: string }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function FailureImage({ title, message }: { title: string; message: string }) {
@@ -63,12 +56,12 @@ function FailureImage({ title, message }: { title: string; message: string }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // Initial frame
 app.frame("/", async (c) => {
-  const channelMetadata = await getChannelDetails()
+  const channelMetadata = await getChannelDetails();
 
   return c.res({
     image: (
@@ -84,8 +77,7 @@ app.frame("/", async (c) => {
           </div>
           <div style={{ ...messageBox }}>
             <div style={{ ...messageText }}>
-              To join the channel, please click the button below to request a
-              membership
+              To join the channel, please click the button below to request a membership
             </div>
           </div>
         </div>
@@ -93,34 +85,29 @@ app.frame("/", async (c) => {
     ),
     intents: [<Button value="request">Request Membership</Button>],
     action: "/request",
-  })
-})
+  });
+});
 
 // Request frame
 app.frame("/request", async (c) => {
-  const { verified, frameData } = c
+  const { verified, frameData } = c;
 
   if (!frameData) {
-    throw new Error("Missing frame data")
+    throw new Error("Missing frame data");
   }
 
   if (process.env.NODE_ENV !== "development" && !verified) {
-    throw new Error("Missing verification")
+    throw new Error("Missing verification");
   }
 
-  const fid = frameData.fid
+  const fid = frameData.fid;
 
   try {
     if ((await isMemberOfChannel(fid)).success) {
       return c.res({
-        image: (
-          <FailureImage
-            title="Already a Member"
-            message="You are already a member of the channel"
-          />
-        ),
+        image: <FailureImage title="Already a Member" message="You are already a member of the channel" />,
         intents: [<Button.Reset>Done</Button.Reset>],
-      })
+      });
     }
 
     // TODO: Waiting on Neynar API
@@ -138,68 +125,47 @@ app.frame("/request", async (c) => {
 
     if (!(await followsChannel(fid)).success) {
       return c.res({
-        image: (
-          <FailureImage
-            title="Not Following Channel"
-            message="Follow the channel and then try again"
-          />
-        ),
+        image: <FailureImage title="Not Following Channel" message="Follow the channel and then try again" />,
         intents: [<Button.Reset>Try Again</Button.Reset>],
-      })
+      });
     }
 
-    const verificationResult = await verifyUser(fid)
+    const verificationResult = await verifyUser(fid);
 
     if (verificationResult.success) {
-      const invited = await sendChannelInvite(fid)
+      const invited = await sendChannelInvite(fid);
 
       if (invited) {
         return c.res({
-          image: (
-            <SuccessImage
-              title="Invite Sent"
-              message="Open the notifications tab to accept your invite"
-            />
-          ),
+          image: <SuccessImage title="Invite Sent" message="Open the notifications tab to accept your invite" />,
           intents: [<Button.Reset>Done</Button.Reset>],
-        })
+        });
       } else {
         return c.res({
-          image: (
-            <FailureImage title="Invite Failed" message="Please try again" />
-          ),
+          image: <FailureImage title="Invite Failed" message="Please try again" />,
           intents: [<Button.Reset>Done</Button.Reset>],
-        })
+        });
       }
     } else {
       return c.res({
-        image: (
-          <FailureImage
-            title="Request Denied"
-            message={verificationResult.message || ""}
-          />
-        ),
+        image: <FailureImage title="Request Denied" message={verificationResult.message || ""} />,
         intents: [<Button.Reset>Done</Button.Reset>],
-      })
+      });
     }
   } catch (error) {
     return c.res({
       image: (
         <FailureImage
           title="Error"
-          message={
-            error instanceof Error
-              ? `Error: ${error.name} - ${error.message}`
-              : "Unknown error"
-          }
+          message={error instanceof Error ? `Error: ${error.name} - ${error.message}` : "Unknown error"}
         />
       ),
       intents: [<Button.Reset>Try Again</Button.Reset>],
-    })
+    });
   }
-})
+});
 
-devtools(app, { serveStatic })
+devtools(app, { serveStatic });
 
-export const GET = handle(app)
-export const POST = handle(app)
+export const GET = handle(app);
+export const POST = handle(app);

@@ -1,13 +1,13 @@
 type WarpcastRequestOptions = {
-  url: string
-  method: "GET" | "POST"
-  queryParams?: Record<string, string>
-  data?: any
+  url: string;
+  method: "GET" | "POST";
+  queryParams?: Record<string, string>;
+  data?: any;
   pagination?: {
-    limit: number
-    cursor?: string
-  }
-}
+    limit: number;
+    cursor?: string;
+  };
+};
 
 export async function makeWarpcastRequest({
   url,
@@ -22,35 +22,35 @@ export async function makeWarpcastRequest({
       accept: "application/json",
       "content-type": "application/json",
     },
-  }
+  };
 
   if (queryParams || pagination) {
-    const searchParams = new URLSearchParams(queryParams)
+    const searchParams = new URLSearchParams(queryParams);
     if (pagination) {
-      searchParams.append("limit", pagination.limit.toString())
+      searchParams.append("limit", pagination.limit.toString());
       if (pagination.cursor) {
-        searchParams.append("cursor", pagination.cursor)
+        searchParams.append("cursor", pagination.cursor);
       }
     }
-    url += `?${searchParams.toString()}`
+    url += `?${searchParams.toString()}`;
   }
 
   if (method === "POST" && data) {
-    options.body = JSON.stringify(data)
+    options.body = JSON.stringify(data);
   }
 
-  const response = await fetch(url, options)
+  const response = await fetch(url, options);
 
   if (!response.ok) {
-    const errorData = await response.json()
-    console.error("Error data", errorData)
+    const errorData = await response.json();
+    console.error("Error data", errorData);
 
-    const error = new Error()
-    error.name = "Warpcast API Error"
-    error.message = JSON.stringify(errorData.errors[0].message)
+    const error = new Error();
+    error.name = "Warpcast API Error";
+    error.message = JSON.stringify(errorData.errors[0].message);
 
-    throw error
+    throw error;
   }
 
-  return await response.json()
+  return await response.json();
 }
