@@ -66,8 +66,15 @@ Edit `.env.local` and provide values for:
 ```
 CHANNEL_ID=your_channel_id
 NEYNAR_API_KEY=your_neynar_api_key
+```
+
+If you already have the UUID of a Neynar managed signer, you can add it to the `.env.local` file:
+
+```
 SIGNER_UUID=your_signer_uuid
 ```
+
+If you do not have a signer UUID, see [Creating a Neynar Signer](#creating-a-neynar-signer)
 
 ### 4. Run the development server
 
@@ -98,7 +105,6 @@ Your project should now be live!
 Let's first grab the URL of our Frame from the Vercel Dashboard:
 <img width="1232" alt="image" src="https://github.com/user-attachments/assets/2b3b5927-1052-4c9f-baf1-3ba537915e93">
 
-
 Alternatively, you can run this command and get the first alias:
 
 ```bash
@@ -106,7 +112,6 @@ yarn vercel inspect [deployment-url]
 ```
 
 <img width="525" alt="image" src="https://github.com/user-attachments/assets/5cc3adb8-0824-48d1-bb41-1729fe4491e9">
-
 
 Now we can head to the Warpcast frame validator and paste the URL to see our live Frame:
 
@@ -176,6 +181,25 @@ ChannelKit is intended to be a community project! Contributions are welcome foll
 This project is licensed under the MIT License.
 
 ## Appendix
+
+### Creating a Neynar Managed Signer
+
+If you do not have a signer UUID, you can create one by adding your Farcaster mnemonic to the `.env.local` file. Whether you use your personal mnemonic or create a new account specifically for this purpose is up to you
+
+```bash
+FARCASTER_MNEMONIC=your_farcaster_mnemonic
+```
+
+Then, run the following command and follow the prompts to approve the signer in the
+Warpcast mobile app:
+
+```bash
+yarn run create-signer
+```
+
+This will create a new signer and output the UUID to the `.env.local` file, as well as
+the console. It is recommended to save this UUID in case the signer is not approved, or
+to re-use the same signer for multiple channels.
 
 ### Understanding the Verification and Data Structure
 
