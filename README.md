@@ -123,8 +123,9 @@ ChannelKit comes with a set of basic verifications to determine user eligibility
 
 ### Included Verifications
 
-- `isPowerUser`: Checks if the user has a power badge on Warpcast.
+- `isPowerUser`: Checks if the user has a power badge on Warpcast.(commented out by default)
 - `hasVerifiedEthAddress`: Verifies if the user has a verified Ethereum address.
+- `hasVerifiedSolAddress`: Verifies if the user has a verified Solana address.(commented out by default)
 - `hasMoreThan100Followers`: Checks if the user has more than 100 followers.
 - `hasCastedMoreThan10Times`: Verifies if the user has cast more than 10 times in the channel (commented out by default).
 - `hasProfileRankBelow200`: Checks if the user's OpenRank profile rank is below 200 (commented out by default).
