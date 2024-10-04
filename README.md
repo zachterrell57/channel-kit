@@ -73,7 +73,7 @@ If you already have the UUID of a Neynar managed signer, you can add it to the `
 SIGNER_UUID=your_signer_uuid
 ```
 
-If you do not have a signer UUID, see [Creating a Neynar Signer](#creating-a-neynar-managed-signer)
+If you do not have a signer UUID, see [Creating a Neynar Managed Signer](#creating-a-neynar-managed-signer)
 
 ### 4. Run the development server
 
