@@ -20,16 +20,11 @@ export const followsChannel: VerificationFunction = async (
   fid: number
 ): Promise<VerificationResult> => {
   try {
-    let cursor: string | undefined
-    do {
-      const response = await farcaster.getChannelFollowers(100, cursor)
+    const response = await farcaster.getUserFollowingChannelStatus(fid)
 
-      if (response.result.users.some((user) => user.fid === fid)) {
-        return { success: true }
-      }
-
-      cursor = response.next?.cursor
-    } while (cursor)
+    if (response.result.following) {
+      return { success: true }
+    }
 
     return { success: false, message: "User does not follow the channel" }
   } catch (error) {

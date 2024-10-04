@@ -18,24 +18,19 @@ export async function getChannelMembers(): Promise<MembersResponse> {
   return response as MembersResponse
 }
 
-export type ChannelFollowersResponse = {
+export type UserChannelStatusResponse = {
   result: {
-    users: {
-      fid: number
-      followedAt: number
-    }[]
-  }
-  next?: {
-    cursor: string
+    following: boolean
+    followedAt?: number
   }
 }
 
-export async function getChannelFollowers(
-  limit: number = 100,
-  cursor?: string
-): Promise<ChannelFollowersResponse> {
-  const url = "https://api.warpcast.com/v1/channel-followers"
+export async function getUserFollowingChannelStatus(
+  fid: number
+): Promise<UserChannelStatusResponse> {
+  const url = "https://api.warpcast.com/v1/user-channel"
   const queryParams: Record<string, string> = {
+    fid: fid.toString(),
     channelId: CHANNEL_ID,
   }
 
@@ -43,13 +38,9 @@ export async function getChannelFollowers(
     url,
     method: "GET",
     queryParams,
-    pagination: {
-      limit,
-      cursor,
-    },
   })
 
-  return response as ChannelFollowersResponse
+  return response as UserChannelStatusResponse
 }
 
 export async function getChannelDetails(): Promise<ChannelMetadata> {
