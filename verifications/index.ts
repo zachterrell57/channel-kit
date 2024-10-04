@@ -2,6 +2,7 @@ import {
   hasCastedMoreThan10Times,
   hasMoreThan100Followers,
   hasVerifiedEthAddress,
+  hasVerifiedSolAddress,
   isPowerUser,
 } from "./farcaster"
 import { hasProfileRankBelow200 } from "./openrank"
@@ -20,6 +21,9 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Verify if the user has a verified Ethereum address
   hasVerifiedEthAddress,
+
+  // Check if the user has a verified Solana address
+  // hasVerifiedSolAddress,
 
   // Check if the user has more than 100 followers
   hasMoreThan100Followers,

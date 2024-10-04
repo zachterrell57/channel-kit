@@ -73,6 +73,19 @@ export const hasVerifiedEthAddress: VerificationFunction = async (
       }
 }
 
+export const hasVerifiedSolAddress: VerificationFunction = async (
+  fid: number
+): Promise<VerificationResult> => {
+  const user = await farcaster.getUser(fid)
+  const hasVerified = user.users[0].verified_addresses.sol_addresses.length > 0
+  return hasVerified
+    ? { success: true }
+    : {
+        success: false,
+        message: "User does not have a verified Solana address",
+      }
+}
+
 export const hasCastedMoreThan10Times: VerificationFunction = async (
   fid: number
 ): Promise<VerificationResult> => {
