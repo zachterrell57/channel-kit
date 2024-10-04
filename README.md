@@ -24,7 +24,6 @@ ChannelKit is an open-source Next.js application built with [Frog.js](https://fr
 
 1. Channel owner deploys this project to Vercel
 2. Channel owner casts frame in channel, optionally pins for better visibility
-   TODO: Add image
 3. Prespective member clicks "Request Membership" button on frame
 4. Verifications run in background, and automatically output an accepted / denied state - If accepted, user is automatically sent an invite - If denied message is shown with reasoning
    ![CleanShot 2024-10-02 at 15 23 14@2x](https://github.com/user-attachments/assets/2c1d6cee-884a-4b0b-a414-62884a05267f)
