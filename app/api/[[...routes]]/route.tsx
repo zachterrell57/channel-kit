@@ -111,42 +111,42 @@ app.frame("/request", async (c) => {
   const fid = frameData.fid
 
   try {
-    if ((await isMemberOfChannel(fid)).success) {
-      return c.res({
-        image: (
-          <FailureImage
-            title="Already a Member"
-            message="You are already a member of the channel"
-          />
-        ),
-        intents: [<Button.Reset>Done</Button.Reset>],
-      })
-    }
-
-    // TODO: Waiting on Neynar API
-    // if ((await isInvitedToChannel(fid)).success) {
+    // if ((await isMemberOfChannel(fid)).success) {
     //   return c.res({
     //     image: (
-    //       <SuccessImage
-    //         title="Invite Sent"
-    //         message="Open the notifications tab to accept your invite"
+    //       <FailureImage
+    //         title="Already a Member"
+    //         message="You are already a member of the channel"
     //       />
     //     ),
     //     intents: [<Button.Reset>Done</Button.Reset>],
-    //   });
+    //   })
     // }
 
-    if (!(await followsChannel(fid)).success) {
-      return c.res({
-        image: (
-          <FailureImage
-            title="Not Following Channel"
-            message="Follow the channel and then try again"
-          />
-        ),
-        intents: [<Button.Reset>Try Again</Button.Reset>],
-      })
-    }
+    // // TODO: Waiting on Neynar API
+    // // if ((await isInvitedToChannel(fid)).success) {
+    // //   return c.res({
+    // //     image: (
+    // //       <SuccessImage
+    // //         title="Invite Sent"
+    // //         message="Open the notifications tab to accept your invite"
+    // //       />
+    // //     ),
+    // //     intents: [<Button.Reset>Done</Button.Reset>],
+    // //   });
+    // // }
+
+    // if (!(await followsChannel(fid)).success) {
+    //   return c.res({
+    //     image: (
+    //       <FailureImage
+    //         title="Not Following Channel"
+    //         message="Follow the channel and then try again"
+    //       />
+    //     ),
+    //     intents: [<Button.Reset>Try Again</Button.Reset>],
+    //   })
+    // }
 
     const verificationResult = await verifyUser(fid)
 
@@ -175,7 +175,7 @@ app.frame("/request", async (c) => {
       return c.res({
         image: (
           <FailureImage
-            title="Membership Request Failed"
+            title="Request Denied"
             message={verificationResult.message || ""}
           />
         ),
