@@ -1,4 +1,4 @@
-import { createSystem } from "frog/ui"
+import { createSystem } from "frog/ui";
 
 export const { Icon, Heading, vars } = createSystem({
   fonts: {
@@ -18,4 +18,4 @@ export const { Icon, Heading, vars } = createSystem({
   fontSizes: {
     "42": 42,
   },
-})
+});
