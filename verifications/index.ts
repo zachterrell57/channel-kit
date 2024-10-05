@@ -47,3 +47,27 @@ export async function verifyUser(fid: number): Promise<VerificationResult> {
   }
   return { success: true }; // No message needed for success
 }
+
+/**
+ * Used to compose verification functions and succeed if any of them succeed. Example usage:
+ *
+ * const verificationFunctions = [
+ *   OR(
+ *     hasMoreThan100Followers,
+ *     hasCastedMoreThan10Times,
+ *   )
+ * ]
+ */
+function OR(...fns: VerificationFunction[]): VerificationFunction {
+  return async (fid) => {
+    let errorMessage: VerificationResult["message"];
+    for (const fn of fns) {
+      const result = await fn(fid);
+      if (result.success) {
+        return result;
+      }
+      errorMessage = result.message;
+    }
+    return { success: false, message: errorMessage };
+  };
+}
