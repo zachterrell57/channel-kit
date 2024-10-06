@@ -5,6 +5,12 @@ import {
   hasVerifiedSolAddress,
   isPowerUser,
 } from "./farcaster";
+import {
+  hasIcebreakerCoinbaseVerified,
+  hasIcebreakerHuman,
+  hasIcebreakerQBuilder,
+  hasIcebreakerVerified,
+} from "./icebreaker";
 import { hasProfileRankBelow200 } from "./openrank";
 import { isSubscribedWithSTP } from "./stp";
 
