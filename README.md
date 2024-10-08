@@ -4,6 +4,9 @@
 
 ChannelKit is an open-source Next.js application built with [Frog.js](https://frog.fm) and deployed on [Vercel](https://vercel.com), providing a customizable Farcaster Frame for managing channel memberships. Designed for developers, it offers a flexible foundation for creating and managing membership requests to Farcaster channels.
 
+![CleanShot 2024-10-07 at 19 49 46@2x](https://github.com/user-attachments/assets/f90cd967-731b-4eb9-b9d3-80ec65e55d7f)
+
+
 ## Prerequisites
 
 - [Node.js] (v22 or later)
