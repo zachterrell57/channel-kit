@@ -28,13 +28,13 @@ const verificationFunctions: VerificationFunction[] = [
   // isPowerUser,
 
   // Verify if the user has a verified Ethereum address
-  // hasVerifiedEthAddress,
+  hasVerifiedEthAddress,
 
   // Check if the user has a verified Solana address
   // hasVerifiedSolAddress,
 
   // Check if the user has more than 100 followers
-  // hasMoreThan100Followers,
+  hasMoreThan100Followers,
 
   // Check if the user has casted more than 10 times in the channel
   // hasCastedMoreThan10Times,
@@ -49,7 +49,7 @@ const verificationFunctions: VerificationFunction[] = [
   // isInAllowlist,
 
   // Check if the user is verified with Worldcoin
-  isWorldcoinVerified,
+  // isWorldcoinVerified,
 ];
 
 export async function verifyUser(fid: number): Promise<VerificationResult> {
