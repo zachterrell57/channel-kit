@@ -68,7 +68,7 @@ app.frame("/", async (c) => {
       <div style={{ ...container }}>
         <div style={{ ...verticalStack }}>
           <div style={{ ...channelInfo }}>
-            <img style={{ ...icon }} src={channelMetadata.image_url} />
+            <img style={{ ...icon }} src={channelMetadata.image_url} alt="Channel Logo" />
             <div style={{ paddingTop: 10, display: "flex" }}>
               <Heading size="42" font={"default"} weight="600">
                 Join /{channelMetadata.name}
@@ -83,7 +83,7 @@ app.frame("/", async (c) => {
         </div>
       </div>
     ),
-    intents: [<Button value="request">Request Membership</Button>],
+    intents: <Button value="request">Request Membership</Button>,
     action: "/request",
   });
 });
@@ -106,7 +106,7 @@ app.frame("/request", async (c) => {
     if ((await isMemberOfChannel(fid)).success) {
       return c.res({
         image: <FailureImage title="Already a Member" message="You are already a member of the channel" />,
-        intents: [<Button.Reset>Done</Button.Reset>],
+        intents: <Button.Reset>Done</Button.Reset>,
       });
     }
 
@@ -126,7 +126,7 @@ app.frame("/request", async (c) => {
     if (!(await followsChannel(fid)).success) {
       return c.res({
         image: <FailureImage title="Not Following Channel" message="Follow the channel and then try again" />,
-        intents: [<Button.Reset>Try Again</Button.Reset>],
+        intents: <Button.Reset>Try Again</Button.Reset>,
       });
     }
 
@@ -138,20 +138,20 @@ app.frame("/request", async (c) => {
       if (invited) {
         return c.res({
           image: <SuccessImage title="Invite Sent" message="Open the notifications tab to accept your invite" />,
-          intents: [<Button.Reset>Done</Button.Reset>],
-        });
-      } else {
-        return c.res({
-          image: <FailureImage title="Invite Failed" message="Please try again" />,
-          intents: [<Button.Reset>Done</Button.Reset>],
+          intents: <Button.Reset>Done</Button.Reset>,
         });
       }
-    } else {
+
       return c.res({
-        image: <FailureImage title="Request Denied" message={verificationResult.message || ""} />,
-        intents: [<Button.Reset>Done</Button.Reset>],
+        image: <FailureImage title="Invite Failed" message="Please try again" />,
+        intents: <Button.Reset>Done</Button.Reset>,
       });
     }
+
+    return c.res({
+      image: <FailureImage title="Request Denied" message={verificationResult.message || ""} />,
+      intents: <Button.Reset>Done</Button.Reset>,
+    });
   } catch (error) {
     return c.res({
       image: (
@@ -160,7 +160,7 @@ app.frame("/request", async (c) => {
           message={error instanceof Error ? `Error: ${error.name} - ${error.message}` : "Unknown error"}
         />
       ),
-      intents: [<Button.Reset>Try Again</Button.Reset>],
+      intents: <Button.Reset>Try Again</Button.Reset>,
     });
   }
 });

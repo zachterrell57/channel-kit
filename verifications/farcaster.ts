@@ -39,7 +39,7 @@ export const hasMoreThan100Followers: VerificationFunction = async (fid: number)
     ? { success: true }
     : {
         success: false,
-        message: `User has less than 100 followers`,
+        message: "User has less than 100 followers",
       };
 };
 
@@ -71,6 +71,16 @@ export const hasCastedMoreThan10Times: VerificationFunction = async (fid: number
     ? { success: true }
     : {
         success: false,
-        message: `User has casted less than 10 times in this channel`,
+        message: "User has casted less than 10 times in this channel",
       };
+};
+
+const ALLOWED_FIDS = [1, 2, 3];
+
+export const isInAllowlist: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
+  if (ALLOWED_FIDS.includes(fid)) {
+    return { success: true };
+  }
+
+  return { success: false, message: "User is not in the allowlist" };
 };

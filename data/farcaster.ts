@@ -80,7 +80,7 @@ export async function sendChannelInvite(fid: number): Promise<boolean> {
 }
 
 export async function getUserCasts(fid: number): Promise<Cast[]> {
-  const url = `https://api.neynar.com/v2/farcaster/feed/user/casts`;
+  const url = "https://api.neynar.com/v2/farcaster/feed/user/casts";
   const response = await makeNeynarRequest({
     url,
     method: "GET",

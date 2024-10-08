@@ -4,6 +4,7 @@ import {
   hasVerifiedEthAddress,
   hasVerifiedSolAddress,
   isPowerUser,
+  isInAllowlist, // Add this import
 } from "./farcaster";
 import {
   hasIcebreakerCoinbaseVerified,
@@ -42,6 +43,9 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Check if the user is subscribed with STP (Subscription Token Protocol)
   // isSubscribedWithSTP,
+
+  // Check if the user is in the allowlist
+  // isInAllowlist,
 ];
 
 export async function verifyUser(fid: number): Promise<VerificationResult> {
