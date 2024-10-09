@@ -4,7 +4,7 @@ import {
   hasVerifiedEthAddress,
   hasVerifiedSolAddress,
   isPowerUser,
-  isInAllowlist, // Add this import
+  isInAllowlist,
 } from "./farcaster";
 import {
   hasIcebreakerCoinbaseVerified,
@@ -14,6 +14,7 @@ import {
 } from "./icebreaker";
 import { hasProfileRankBelow200 } from "./openrank";
 import { isSubscribedWithSTP } from "./stp";
+import { isWorldcoinVerified } from "./worldcoin";
 
 export type VerificationResult = {
   success: boolean;
@@ -46,6 +47,9 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Check if the user is in the allowlist
   // isInAllowlist,
+
+  // Check if the user is verified with Worldcoin
+  // isWorldcoinVerified,
 ];
 
 export async function verifyUser(fid: number): Promise<VerificationResult> {

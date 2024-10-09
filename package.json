@@ -16,6 +16,7 @@
     "@neynar/nodejs-sdk": "^1.54.1",
     "@types/qrcode-terminal": "^0.12.2",
     "dotenv": "^16.4.5",
+    "farcaster-humanizer": "^1.0.6",
     "frog": "latest",
     "hono": "latest",
     "lucide-react": "^0.447.0",
