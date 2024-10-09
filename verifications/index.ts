@@ -5,6 +5,7 @@ import {
   hasVerifiedSolAddress,
   isPowerUser,
   isInAllowlist,
+  isFollowedByChannelOwner,
 } from "./farcaster";
 import {
   hasIcebreakerCoinbaseVerified,
@@ -35,6 +36,9 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Check if the user has more than 100 followers
   hasMoreThan100Followers,
+
+  // Check if the user is followed by the channel owner
+  // isFollowedByChannelOwner,
 
   // Check if the user has casted more than 10 times in the channel
   // hasCastedMoreThan10Times,

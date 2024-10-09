@@ -43,6 +43,38 @@ export const hasMoreThan100Followers: VerificationFunction = async (fid: number)
       };
 };
 
+export const isFollowedByChannelOwner: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
+  try {
+    // Get channel details to retrieve the owner's FID
+    const channelDetails = await farcaster.getChannelDetails();
+    const channelOwnerFid = channelDetails.lead.fid;
+
+    if (!channelOwnerFid) {
+      return { success: false, message: "Channel owner not found" };
+    }
+
+    // Get the channel owner's user details
+    const response = await farcaster.getUser(channelOwnerFid, fid);
+
+    const channelOwner = response.users[0];
+
+    if (!channelOwner) {
+      return { success: false, message: "Channel owner details not found" };
+    }
+
+    const isFollowed = channelOwner.viewer_context.followed_by;
+
+    if (isFollowed) {
+      return { success: true };
+    }
+
+    return { success: false, message: "User not followed by the channel owner" };
+  } catch (error) {
+    console.error("Error checking if user is followed by channel owner:", error);
+    return { success: false, message: "Error checking if user is followed by channel owner" };
+  }
+};
+
 export const hasVerifiedEthAddress: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const user = await farcaster.getUser(fid);
   const hasVerified = user.users[0].verified_addresses.eth_addresses.length > 0;
