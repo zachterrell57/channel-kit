@@ -55,8 +55,8 @@ export async function getChannelDetails(): Promise<ChannelMetadata> {
 export type UsersResponse = {
   users: User[];
 };
-export async function getUser(fid: number): Promise<UsersResponse> {
-  const url = `https://api.neynar.com/v2/farcaster/user/bulk?fids=${fid}`;
+export async function getUser(fid: number, viewerFid?: number): Promise<UsersResponse> {
+  const url = `https://api.neynar.com/v2/farcaster/user/bulk?fids=${fid}${viewerFid ? `&viewer_fid=${viewerFid}` : ""}`;
 
   const response = await makeNeynarRequest({
     url,
