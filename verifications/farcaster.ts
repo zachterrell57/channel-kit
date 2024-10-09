@@ -3,7 +3,7 @@ import * as farcaster from "@/data/farcaster";
 import type { VerificationFunction, VerificationResult } from ".";
 
 export const isMemberOfChannel: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
-  const members = await farcaster.getChannelMembers();
+  const members = await farcaster.getChannelMembers(fid);
 
   return { success: members.members.some((member) => member.user.fid === fid) };
 };
