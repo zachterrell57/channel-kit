@@ -7,12 +7,12 @@ import { makeWarpcastRequest } from "@/lib/warpcast";
 export type MembersResponse = {
   members: Member[];
 };
-export async function getChannelMembers(): Promise<MembersResponse> {
+export async function getChannelMembers(fid: number): Promise<MembersResponse> {
   const url = "https://api.neynar.com/v2/farcaster/channel/member/list";
   const response = await makeNeynarRequest({
     url,
     method: "GET",
-    queryParams: { channel_id: CHANNEL_ID },
+    queryParams: { channel_id: CHANNEL_ID, fid: fid.toString() },
   });
 
   return response as MembersResponse;
