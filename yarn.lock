@@ -785,15 +785,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neynar/nodejs-sdk@npm:^1.54.1":
-  version: 1.54.1
-  resolution: "@neynar/nodejs-sdk@npm:1.54.1"
+"@neynar/nodejs-sdk@npm:^1.60.0":
+  version: 1.60.0
+  resolution: "@neynar/nodejs-sdk@npm:1.60.0"
   dependencies:
     "@openapitools/openapi-generator-cli": "npm:^2.7.0"
     axios: "npm:^1.6.2"
     semver: "npm:^7.6.0"
     viem: "npm:^2.21.14"
-  checksum: 10c0/a112922e38178f43095330e55ee482e166da033cebfe3cea681ed799113a4e32e77fff946f36c511292d48be2bca5fe4574966a56f4d29a97d31e914d387cffe
+  checksum: 10c0/3e106feae0aa876954bd3a562095c27f77145683362b6714b96ef359de415f6551457239862b23cbab17affbf653e493999007110c67e1754c0f6a370d69cd38
   languageName: node
   linkType: hard
 
@@ -1216,6 +1216,34 @@ __metadata:
     "@swc/counter": "npm:^0.1.3"
     tslib: "npm:^2.4.0"
   checksum: 10c0/21a9b9cfe7e00865f9c9f3eb4c1cc5b397143464f7abee76a2c5366e591e06b0155b5aac93fe8269ef8d548df253f6fd931e9ddfc0fd12efd405f90f45506e7d
+  languageName: node
+  linkType: hard
+
+"@t3-oss/env-core@npm:0.11.1":
+  version: 0.11.1
+  resolution: "@t3-oss/env-core@npm:0.11.1"
+  peerDependencies:
+    typescript: ">=5.0.0"
+    zod: ^3.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/1b59ff54b3f1541b35f5e415eb694daa3e37267d91db7c0654b07839d968b80251a965a7e5d8b913ed518027660c371cc8a5cd11b72c7e6b093569b3b5a6ad9a
+  languageName: node
+  linkType: hard
+
+"@t3-oss/env-nextjs@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@t3-oss/env-nextjs@npm:0.11.1"
+  dependencies:
+    "@t3-oss/env-core": "npm:0.11.1"
+  peerDependencies:
+    typescript: ">=5.0.0"
+    zod: ^3.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/3b74fc44706c9a80b8de378c41d9d55ac6913672b6358cc2a1d8e3eb73d9817422dc39d8881d3efba560eac8ddc095294d3482d53038b844971ec4772d46f3db
   languageName: node
   linkType: hard
 
@@ -2033,7 +2061,8 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:1.9.3"
     "@farcaster/hub-nodejs": "npm:^0.12.4"
-    "@neynar/nodejs-sdk": "npm:^1.54.1"
+    "@neynar/nodejs-sdk": "npm:^1.60.0"
+    "@t3-oss/env-nextjs": "npm:^0.11.1"
     "@types/node": "npm:^20"
     "@types/prompts": "npm:^2.4.9"
     "@types/qrcode-terminal": "npm:^0.12.2"
@@ -2051,6 +2080,7 @@ __metadata:
     tsx: "npm:^4.19.1"
     typescript: "npm:^5"
     vercel: "npm:^37.6.1"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
@@ -6039,5 +6069,12 @@ __metadata:
   version: 0.3.3
   resolution: "yoga-wasm-web@npm:0.3.3"
   checksum: 10c0/d46ae3a436409e89eb0ea3b8c7624dafaf2c846d9038fdf8aa0cc839f73a2577b679bdc22997596177de74c580a6cdc3206c98fd2acd91b66f85462d9d9d260a
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
   languageName: node
   linkType: hard

@@ -1,44 +1,16 @@
-import { STP_CHAIN_ID, STP_CONTRACT_ADDRESS } from "@/env";
+import { env } from "@/env";
 
-import { makeNeynarRequest } from "@/lib/neynar";
+import neynarClient from "@/lib/neynar";
 
 import { getUser } from "./farcaster";
 
-export type SubscriptionResponse = {
-  [address: string]: {
-    object: string;
-    status: boolean;
-    expires_at: number;
-    subscribed_at: number;
-    tier: {
-      id: number;
-      price: {
-        period_duration_seconds: number;
-        tokens_per_period: string;
-        initial_mint_price: string;
-      };
-    };
-  };
-};
-
-export async function getSTPStatus(fid: number): Promise<SubscriptionResponse> {
+export async function getSTPStatus(fid: number) {
   const user = await getUser(fid);
+  const address = user?.verified_addresses.eth_addresses[0];
 
-  const address = user.users[0].verified_addresses.eth_addresses[0];
+  if (!address) return null;
 
-  //   TODO: handle multiple addresses
-  //   TODO: handle no addresses
+  // TODO: handle multiple addresses
 
-  const url = "https://api.neynar.com/v2/stp/subscription_check";
-  const response = await makeNeynarRequest({
-    url,
-    method: "GET",
-    queryParams: {
-      addresses: address,
-      contract_address: STP_CONTRACT_ADDRESS,
-      chain_id: STP_CHAIN_ID,
-    },
-  });
-
-  return response as SubscriptionResponse;
+  return neynarClient.fetchSubscriptionCheck([address], env.STP_CONTRACT_ADDRESS, env.STP_CHAIN_ID);
 }

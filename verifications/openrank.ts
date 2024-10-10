@@ -8,6 +8,6 @@ export const hasProfileRankBelow200: VerificationFunction = async (fid: number):
     ? { success: true }
     : {
         success: false,
-        message: `User has an openrank profile rank less than 200`,
+        message: "User has an openrank profile rank less than 200",
       };
 };

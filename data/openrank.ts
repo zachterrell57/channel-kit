@@ -2,10 +2,15 @@ type OpenrankRequestOptions = {
   url: string;
   method: "GET" | "POST";
   queryParams?: Record<string, string>;
-  data?: any;
+  data?: unknown;
 };
 
-export async function makeOpenrankRequest({ url, method, queryParams, data }: OpenrankRequestOptions): Promise<any> {
+export async function makeOpenrankRequest({
+  url,
+  method,
+  queryParams,
+  data,
+}: OpenrankRequestOptions): Promise<unknown> {
   const options: RequestInit = {
     method,
     headers: {
@@ -37,15 +42,17 @@ export async function makeOpenrankRequest({ url, method, queryParams, data }: Op
   }
 }
 
-export type ProfileEngagementRank = {
-  fid: number;
-  username: string;
-  rank: number;
-  score: number;
-  percentile: number;
+export type ProfileEngagementRankResult = {
+  result: {
+    fid: number;
+    username: string;
+    rank: number;
+    score: number;
+    percentile: number;
+  }[];
 };
 
-export async function getProfileEngagementRank(fid: number): Promise<ProfileEngagementRank> {
+export async function getProfileEngagementRank(fid: number) {
   const url = "https://graph.cast.k3l.io/scores/global/engagement/fids";
   const response = await makeOpenrankRequest({
     url,
@@ -53,6 +60,5 @@ export async function getProfileEngagementRank(fid: number): Promise<ProfileEnga
     data: [fid],
   });
 
-  console.log("response", response);
-  return response.result[0] as ProfileEngagementRank;
+  return (response as ProfileEngagementRankResult).result[0];
 }

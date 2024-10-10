@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import { ViemLocalEip712Signer } from "@farcaster/hub-nodejs";
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
 import dotenv from "dotenv";
@@ -27,7 +27,7 @@ async function getFid() {
 
 async function generateSignature(publicKey: string) {
   const account = mnemonicToAccount(farcasterMnemonic);
-  const appAccountKey = new ViemLocalEip712Signer(account as any);
+  const appAccountKey = new ViemLocalEip712Signer(account);
   const deadline = Math.floor(Date.now() / 1000) + 86400;
   const uintAddress = hexToBytes(publicKey as `0x${string}`);
   const FID = await getFid();
@@ -92,7 +92,7 @@ async function createSigner() {
     );
 
     console.log("\nScan this QR code to approve the signer:");
-    qrcodeTerminal.generate(signedKey.signer_approval_url!, { small: true });
+    qrcodeTerminal.generate(signedKey.signer_approval_url ?? "", { small: true });
     console.log("\nOr open this URL on your mobile device:");
     console.log(signedKey.signer_approval_url);
 

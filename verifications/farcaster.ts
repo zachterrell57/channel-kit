@@ -5,7 +5,7 @@ import type { VerificationFunction, VerificationResult } from ".";
 export const isMemberOfChannel: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const members = await farcaster.getChannelMembers(fid);
 
-  return { success: members.members.some((member) => member.user.fid === fid) };
+  return { success: members.some((member) => member.user.fid === fid) };
 };
 
 export const isInvitedToChannel: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
@@ -29,12 +29,12 @@ export const followsChannel: VerificationFunction = async (fid: number): Promise
 
 export const isPowerUser: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const user = await farcaster.getUser(fid);
-  return user.users[0].power_badge ? { success: true } : { success: false, message: "User is not a power user" };
+  return user?.power_badge ? { success: true } : { success: false, message: "User is not a power user" };
 };
 
 export const hasMoreThan100Followers: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const user = await farcaster.getUser(fid);
-  const followerCount = user.users[0].follower_count;
+  const followerCount = user?.follower_count ?? 0;
   return followerCount > 100
     ? { success: true }
     : {
@@ -47,22 +47,20 @@ export const isFollowedByChannelOwner: VerificationFunction = async (fid: number
   try {
     // Get channel details to retrieve the owner's FID
     const channelDetails = await farcaster.getChannelDetails();
-    const channelOwnerFid = channelDetails.lead.fid;
+    const channelOwnerFid = channelDetails.lead?.fid;
 
     if (!channelOwnerFid) {
       return { success: false, message: "Channel owner not found" };
     }
 
     // Get the channel owner's user details
-    const response = await farcaster.getUser(channelOwnerFid, fid);
-
-    const channelOwner = response.users[0];
+    const channelOwner = await farcaster.getUser(channelOwnerFid, fid);
 
     if (!channelOwner) {
       return { success: false, message: "Channel owner details not found" };
     }
 
-    const isFollowed = channelOwner.viewer_context.followed_by;
+    const isFollowed = channelOwner.viewer_context?.followed_by;
 
     if (isFollowed) {
       return { success: true };
@@ -77,7 +75,7 @@ export const isFollowedByChannelOwner: VerificationFunction = async (fid: number
 
 export const hasVerifiedEthAddress: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const user = await farcaster.getUser(fid);
-  const hasVerified = user.users[0].verified_addresses.eth_addresses.length > 0;
+  const hasVerified = user && user.verified_addresses.eth_addresses.length > 0;
   return hasVerified
     ? { success: true }
     : {
@@ -88,7 +86,7 @@ export const hasVerifiedEthAddress: VerificationFunction = async (fid: number): 
 
 export const hasVerifiedSolAddress: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   const user = await farcaster.getUser(fid);
-  const hasVerified = user.users[0].verified_addresses.sol_addresses.length > 0;
+  const hasVerified = user && user.verified_addresses.sol_addresses.length > 0;
   return hasVerified
     ? { success: true }
     : {

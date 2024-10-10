@@ -3,9 +3,9 @@ import {
   hasMoreThan100Followers,
   hasVerifiedEthAddress,
   hasVerifiedSolAddress,
-  isPowerUser,
-  isInAllowlist,
   isFollowedByChannelOwner,
+  isInAllowlist,
+  isPowerUser,
 } from "./farcaster";
 import {
   hasIcebreakerCoinbaseVerified,
