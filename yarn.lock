@@ -785,15 +785,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@neynar/nodejs-sdk@npm:^1.54.1":
-  version: 1.54.1
-  resolution: "@neynar/nodejs-sdk@npm:1.54.1"
+"@neynar/nodejs-sdk@npm:^1.60.0":
+  version: 1.60.0
+  resolution: "@neynar/nodejs-sdk@npm:1.60.0"
   dependencies:
     "@openapitools/openapi-generator-cli": "npm:^2.7.0"
     axios: "npm:^1.6.2"
     semver: "npm:^7.6.0"
     viem: "npm:^2.21.14"
-  checksum: 10c0/a112922e38178f43095330e55ee482e166da033cebfe3cea681ed799113a4e32e77fff946f36c511292d48be2bca5fe4574966a56f4d29a97d31e914d387cffe
+  checksum: 10c0/3e106feae0aa876954bd3a562095c27f77145683362b6714b96ef359de415f6551457239862b23cbab17affbf653e493999007110c67e1754c0f6a370d69cd38
   languageName: node
   linkType: hard
 
@@ -2033,7 +2033,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:1.9.3"
     "@farcaster/hub-nodejs": "npm:^0.12.4"
-    "@neynar/nodejs-sdk": "npm:^1.54.1"
+    "@neynar/nodejs-sdk": "npm:^1.60.0"
     "@types/node": "npm:^20"
     "@types/prompts": "npm:^2.4.9"
     "@types/qrcode-terminal": "npm:^0.12.2"
