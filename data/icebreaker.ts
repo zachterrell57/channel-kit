@@ -1,5 +1,3 @@
-
-
 export type IcebreakerChannel = {
   type: string;
   isVerified?: boolean;
@@ -51,12 +49,12 @@ const API_URL = "https://app.icebreaker.xyz/api/v1";
 async function request<T>(path: string, options?: RequestInit): Promise<T | undefined> {
   try {
     const response = await fetch(`${API_URL}${path}`, options);
-    
+
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
     }
 
-    const data = await response.json() as T;
+    const data = (await response.json()) as T;
     return data;
   } catch (err) {
     console.error(err);

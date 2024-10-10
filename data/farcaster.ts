@@ -1,11 +1,10 @@
-import { CHANNEL_ID, SIGNER_UUID } from "@/env";
-
+import { env } from "@/env";
 import neynarClient from "@/lib/neynar";
 import { makeWarpcastRequest } from "@/lib/warpcast";
 import { ChannelMemberRole } from "@neynar/nodejs-sdk/build/neynar-api/v2/index";
 
 export async function getChannelMembers(fid: number) {
-  const { members } = await neynarClient.fetchChannelMembers(CHANNEL_ID, { fid });
+  const { members } = await neynarClient.fetchChannelMembers(env.CHANNEL_ID, { fid });
   return members;
 }
 
@@ -20,7 +19,7 @@ export async function getUserFollowingChannelStatus(fid: number): Promise<UserCh
   const url = "https://api.warpcast.com/v1/user-channel";
   const queryParams: Record<string, string> = {
     fid: fid.toString(),
-    channelId: CHANNEL_ID,
+    channelId: env.CHANNEL_ID,
   };
 
   const response = await makeWarpcastRequest({
@@ -33,7 +32,7 @@ export async function getUserFollowingChannelStatus(fid: number): Promise<UserCh
 }
 
 export async function getChannelDetails() {
-  const { channel } = await neynarClient.lookupChannel(CHANNEL_ID);
+  const { channel } = await neynarClient.lookupChannel(env.CHANNEL_ID);
 
   return channel;
 }
@@ -45,13 +44,18 @@ export async function getUser(fid: number, viewerFid?: number) {
 }
 
 export async function sendChannelInvite(fid: number) {
-  const { success } = await neynarClient.inviteChannelMember(SIGNER_UUID, CHANNEL_ID, fid, ChannelMemberRole.Member);
+  const { success } = await neynarClient.inviteChannelMember(
+    env.SIGNER_UUID,
+    env.CHANNEL_ID,
+    fid,
+    ChannelMemberRole.Member
+  );
 
   return !!success;
 }
 
 export async function getUserCasts(fid: number) {
-  const { casts } = await neynarClient.fetchCastsForUser(fid, { channelId: CHANNEL_ID });
+  const { casts } = await neynarClient.fetchCastsForUser(fid, { channelId: env.CHANNEL_ID });
 
   return casts;
 }

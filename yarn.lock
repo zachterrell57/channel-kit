@@ -1219,6 +1219,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@t3-oss/env-core@npm:0.11.1":
+  version: 0.11.1
+  resolution: "@t3-oss/env-core@npm:0.11.1"
+  peerDependencies:
+    typescript: ">=5.0.0"
+    zod: ^3.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/1b59ff54b3f1541b35f5e415eb694daa3e37267d91db7c0654b07839d968b80251a965a7e5d8b913ed518027660c371cc8a5cd11b72c7e6b093569b3b5a6ad9a
+  languageName: node
+  linkType: hard
+
+"@t3-oss/env-nextjs@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "@t3-oss/env-nextjs@npm:0.11.1"
+  dependencies:
+    "@t3-oss/env-core": "npm:0.11.1"
+  peerDependencies:
+    typescript: ">=5.0.0"
+    zod: ^3.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/3b74fc44706c9a80b8de378c41d9d55ac6913672b6358cc2a1d8e3eb73d9817422dc39d8881d3efba560eac8ddc095294d3482d53038b844971ec4772d46f3db
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2.0.0":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -2034,6 +2062,7 @@ __metadata:
     "@biomejs/biome": "npm:1.9.3"
     "@farcaster/hub-nodejs": "npm:^0.12.4"
     "@neynar/nodejs-sdk": "npm:^1.60.0"
+    "@t3-oss/env-nextjs": "npm:^0.11.1"
     "@types/node": "npm:^20"
     "@types/prompts": "npm:^2.4.9"
     "@types/qrcode-terminal": "npm:^0.12.2"
@@ -2051,6 +2080,7 @@ __metadata:
     tsx: "npm:^4.19.1"
     typescript: "npm:^5"
     vercel: "npm:^37.6.1"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
@@ -6039,5 +6069,12 @@ __metadata:
   version: 0.3.3
   resolution: "yoga-wasm-web@npm:0.3.3"
   checksum: 10c0/d46ae3a436409e89eb0ea3b8c7624dafaf2c846d9038fdf8aa0cc839f73a2577b679bdc22997596177de74c580a6cdc3206c98fd2acd91b66f85462d9d9d260a
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.23.8":
+  version: 3.23.8
+  resolution: "zod@npm:3.23.8"
+  checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69
   languageName: node
   linkType: hard

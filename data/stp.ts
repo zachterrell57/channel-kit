@@ -1,4 +1,4 @@
-import { STP_CHAIN_ID, STP_CONTRACT_ADDRESS } from "@/env";
+import { env } from "@/env";
 
 import neynarClient from "@/lib/neynar";
 
@@ -12,5 +12,5 @@ export async function getSTPStatus(fid: number) {
 
   // TODO: handle multiple addresses
 
-  return neynarClient.fetchSubscriptionCheck([address], STP_CONTRACT_ADDRESS, STP_CHAIN_ID);
+  return neynarClient.fetchSubscriptionCheck([address], env.STP_CONTRACT_ADDRESS, env.STP_CHAIN_ID);
 }
