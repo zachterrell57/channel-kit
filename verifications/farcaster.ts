@@ -114,3 +114,29 @@ export const isInAllowlist: VerificationFunction = async (fid: number): Promise<
 
   return { success: false, message: "User is not in the allowlist" };
 };
+
+export const hasVerifiedXAccount: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
+  try {
+    const response = await farcaster.getAccountVerifications(fid);
+    const xVerification = response.result.verifications.find(
+      (verification) => verification.platform === "x" && verification.fid === fid
+    );
+
+    if (xVerification) {
+      return {
+        success: true,
+      };
+    }
+
+    return {
+      success: false,
+      message: "User does not have a verified X (Twitter) account",
+    };
+  } catch (error) {
+    console.error("Error checking X account verification:", error);
+    return {
+      success: false,
+      message: "Error checking X account verification status",
+    };
+  }
+};
