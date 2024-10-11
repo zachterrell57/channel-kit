@@ -1,13 +1,13 @@
-// -----------------------------------------------------------------------------
-// Neynar
-// -----------------------------------------------------------------------------
-export const CHANNEL_ID = process.env["CHANNEL_ID"] || "";
-export const NEYNAR_API_KEY = process.env["NEYNAR_API_KEY"] || "";
-export const SIGNER_UUID = process.env["SIGNER_UUID"] || "";
-export const FARCASTER_MNEMONIC = process.env["FARCASTER_MNEMONIC"] || "";
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
-// -----------------------------------------------------------------------------
-// STP
-// -----------------------------------------------------------------------------
-export const STP_CONTRACT_ADDRESS = process.env["STP_CONTRACT_ADDRESS"] || "";
-export const STP_CHAIN_ID = process.env["STP_CHAIN_ID"] || "";
+export const env = createEnv({
+  server: {
+    CHANNEL_ID: z.string().optional().default(""),
+    NEYNAR_API_KEY: z.string().optional().default(""),
+    SIGNER_UUID: z.string().uuid().optional().default(""),
+    STP_CONTRACT_ADDRESS: z.string().optional().default(""),
+    STP_CHAIN_ID: z.string().optional().default(""),
+  },
+  experimental__runtimeEnv: {},
+});

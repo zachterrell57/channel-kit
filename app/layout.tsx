@@ -1,5 +1,3 @@
-import { CHANNEL_ID } from "@/env";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 const inter = Inter({

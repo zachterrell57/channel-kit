@@ -1,21 +1,20 @@
 /** @jsxImportSource frog/jsx */
-import { NEYNAR_API_KEY } from "@/env";
+import { getChannelDetails, sendChannelInvite } from "@/data/farcaster";
+import { env } from "@/env";
 import { Heading, Icon, vars } from "@/ui";
+import { channelInfo, container, icon, messageBox, messageText, verticalStack } from "@/ui/styles";
 import { verifyUser } from "@/verifications";
+import { followsChannel, isMemberOfChannel } from "@/verifications/farcaster";
 import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { neynar } from "frog/hubs";
 import { handle } from "frog/next";
 import { serveStatic } from "frog/serve-static";
 
-import { getChannelDetails, sendChannelInvite } from "@/data/farcaster";
-import { channelInfo, container, icon, messageBox, messageText, verticalStack } from "@/ui/styles";
-import { followsChannel, isMemberOfChannel } from "@/verifications/farcaster";
-
 const app = new Frog({
   basePath: "/api",
   title: "ChannelKit",
-  hub: neynar({ apiKey: NEYNAR_API_KEY }),
+  hub: neynar({ apiKey: env.NEYNAR_API_KEY }),
   ui: { vars },
 });
 

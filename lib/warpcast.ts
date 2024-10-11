@@ -2,7 +2,7 @@ type WarpcastRequestOptions = {
   url: string;
   method: "GET" | "POST";
   queryParams?: Record<string, string>;
-  data?: any;
+  data?: unknown;
   pagination?: {
     limit: number;
     cursor?: string;
@@ -15,7 +15,7 @@ export async function makeWarpcastRequest({
   queryParams,
   data,
   pagination,
-}: WarpcastRequestOptions): Promise<any> {
+}: WarpcastRequestOptions): Promise<unknown> {
   const options: RequestInit = {
     method,
     headers: {
