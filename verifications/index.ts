@@ -3,6 +3,7 @@ import {
   hasMoreThan100Followers,
   hasVerifiedEthAddress,
   hasVerifiedSolAddress,
+  hasVerifiedXAccount,
   isFollowedByChannelOwner,
   isInAllowlist,
   isPowerUser,
@@ -42,6 +43,9 @@ const verificationFunctions: VerificationFunction[] = [
 
   // Check if the user has casted more than 10 times in the channel
   // hasCastedMoreThan10Times,
+
+  // Check if the user has a verified X account
+  // hasVerifiedXAccount,
 
   // Verify if the user's profile rank is below 200 according to OpenRank
   // hasProfileRankBelow200,
