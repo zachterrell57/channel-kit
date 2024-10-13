@@ -1,5 +1,5 @@
 /** @jsxImportSource frog/jsx */
-import { getChannelDetails, sendChannelInvite } from "@/data/farcaster";
+import { getChannelDetails, isInvitedToChannel, sendChannelInvite } from "@/data/farcaster";
 import { env } from "@/env";
 import { Heading, Icon, vars } from "@/ui";
 import { channelInfo, container, icon, messageBox, messageText, verticalStack } from "@/ui/styles";
@@ -109,18 +109,17 @@ app.frame("/request", async (c) => {
       });
     }
 
-    // TODO: Waiting on Neynar API
-    // if ((await isInvitedToChannel(fid)).success) {
-    //   return c.res({
-    //     image: (
-    //       <SuccessImage
-    //         title="Invite Sent"
-    //         message="Open the notifications tab to accept your invite"
-    //       />
-    //     ),
-    //     intents: [<Button.Reset>Done</Button.Reset>],
-    //   });
-    // }
+    if ((await isInvitedToChannel(fid)).success) {
+      return c.res({
+        image: (
+          <SuccessImage
+            title="Invite Already Sent"
+            message="Open the notifications tab to accept your invite"
+          />
+        ),
+        intents: [<Button.Reset>Done</Button.Reset>],
+      });
+    }
 
     if (!(await followsChannel(fid)).success) {
       return c.res({
