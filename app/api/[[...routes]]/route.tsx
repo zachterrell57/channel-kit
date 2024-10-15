@@ -111,13 +111,8 @@ app.frame("/request", async (c) => {
 
     if ((await isInvitedToChannel(fid)).success) {
       return c.res({
-        image: (
-          <SuccessImage
-            title="Invite Already Sent"
-            message="Open the notifications tab to accept your invite"
-          />
-        ),
-        intents: [<Button.Reset>Done</Button.Reset>],
+        image: <SuccessImage title="Invite Already Sent" message="Open the notifications tab to accept your invite" />,
+        intents: <Button.Reset>Done</Button.Reset>,
       });
     }
 

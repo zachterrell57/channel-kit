@@ -43,7 +43,7 @@ export async function getUser(fid: number, viewerFid?: number) {
 }
 
 export async function isInvitedToChannel(fid: number) {
-  const { invites } = await neynarClient.fetchChannelInvites({channelId: env.CHANNEL_ID, invitedFid: fid});
+  const { invites } = await neynarClient.fetchChannelInvites({ channelId: env.CHANNEL_ID, invitedFid: fid });
 
   return { success: invites.some((invite) => invite.invited.fid === fid) };
 }
