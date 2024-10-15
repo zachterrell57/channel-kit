@@ -3,7 +3,7 @@ import type { VerificationFunction, VerificationResult } from ".";
 
 export const isWorldcoinVerified: VerificationFunction = async (fid: number): Promise<VerificationResult> => {
   try {
-    const { isVerified } = useVerified({});
+    const { isVerified } = useVerified();
     const verified = await isVerified(fid);
 
     if (verified) {
@@ -13,6 +13,9 @@ export const isWorldcoinVerified: VerificationFunction = async (fid: number): Pr
     return { success: false, message: "User is not verified with Worldcoin" };
   } catch (error) {
     console.error("Error checking Worldcoin verification:", error);
-    return { success: false, message: "Error checking Worldcoin verification status" };
+    return {
+      success: false,
+      message: "Error checking Worldcoin verification status",
+    };
   }
 };

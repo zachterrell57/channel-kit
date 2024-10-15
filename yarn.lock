@@ -2069,7 +2069,7 @@ __metadata:
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
     dotenv: "npm:^16.4.5"
-    farcaster-humanizer: "npm:^1.0.6"
+    farcaster-humanizer: "npm:^1.0.7"
     frog: "npm:latest"
     hono: "npm:latest"
     lucide-react: "npm:^0.447.0"
@@ -3025,12 +3025,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"farcaster-humanizer@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "farcaster-humanizer@npm:1.0.6"
+"farcaster-humanizer@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "farcaster-humanizer@npm:1.0.7"
   dependencies:
     viem: "npm:^2.21.1"
-  checksum: 10c0/45ccd89b763ccc8fa08fc232ce9db29286ffce059565ede2165a5c066fe74a84216f68e53b31a0d994b5d693ad2b1771decf190223fbe9928d45d8234911fb40
+  checksum: 10c0/cece146fb5e3ae62d15e396aef097dea0dc4d62aa053146c4736e62d987a1a4ce982bcbe41582d3d9c5dad37e5d7732358c9e3be572666c84fa5e623e451aff3
   languageName: node
   linkType: hard
 
